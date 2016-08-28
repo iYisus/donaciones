@@ -1,0 +1,33 @@
+.fh5co-social li a{
+	font-size: 20px;
+}
+
+.logoIPN{
+    max-width: 70px;
+    max-height: 60px;
+    margin-top: -25px;
+}
+
+#fh5co-header h1 a:after {
+  content: initial;
+  }
+
+.imagenes-slider{
+	background-size:100% 88% !important;
+	top:-40px;
+}
+
+.textos-sombra{
+	text-shadow: 3px 3px 3px #000;
+}
+
+
+#fh5co-services-section, #fh5co-work-section, #fh5co-testimony-section, #fh5co-blog-section {
+    padding-top: 0px !important; 
+}
+
+.padding-top{
+	padding-top:20px;
+}
+
+
