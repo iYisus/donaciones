@@ -13,3 +13,12 @@
 
 Route::get('/','MainController@index');
 
+/*
+|--------------------------------------------------------------------------
+| Rutas administrativas
+|--------------------------------------------------------------------------
+*/
+
+Route::get('admin','DashboardController@index');
+Route::get('especialidades','DashboardController@especialidades');
+#Route::resource('nombre')
