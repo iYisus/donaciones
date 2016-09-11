@@ -5,8 +5,8 @@
       <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Instituto de prevension del niño" />
-    <meta name="keywords" content="Instituto de prevension del niño" />
+    <meta name="description" content="Instituto de Previsión del niño" />
+    <meta name="keywords" content="Instituto de Previsión del niño" />
     <meta name="author" content="" />
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -47,14 +47,16 @@
          <header id="fh5co-header" role="banner">
             <div class="container">
                <div class="header-inner">
-                <h1><a href="#"><img src="{{ asset('images/logo.jpg') }}" class="logoIPN"></a></h1>
+                <h1><a href="#"><img src="{{ asset('images/logo.jpg') }}" class="logoIPN  hidden-sm hidden-xs "></a>
+                <h1 class="hidden-lg hidden-md hidden-sm col-xs-12 "> <center>IPN-Venezuela</center>   </a>
+                </h1>
                   <nav role="navigation">
                      <ul>
                         <li><a href="#">Inicio</a></li>
                         <li><a href="#">Acerca</a></li>
                         <li><a href="#">Eventos</a></li>
                         <li><a href="#">Comentarios</a></li>
-                        <li><a href="#">Contactanos</a></li>
+                        <li><a href="#">Servicios</a></li>
                         <li class="cta"><a href="#">Iniciar Sesion</a></li>
                      </ul>
                   </nav>
@@ -65,7 +67,7 @@
          <div class="container"></div>
          @yield('content')
          <!--################-->
-         <footer id="fh5co-footer" role="contentinfo">
+         <footer id="fh5co-footer" role="contentinfo" >
             <div class="container">
                <div class="col-md-3 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
                   <h3>Encuentranos</h3>
@@ -73,14 +75,37 @@
                      Campo Rico. Petare. 
                      <br>
                      Teléfonos:
-                     (212) 256.97.66, 256.81.67, 256.92.82
+                     <br>
+                     (212) 256.97.66 
+                     <br>
+                     (212) 256.81.67
+                     <br>
+                     (212) 256.92.82
                   </p>
                </div>
-               <div class="col-md-6 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+               <div class="col-md-7 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
                   <h3>Nuestros Servicios</h3>
-                  <ul class="float">
-                     Aquí irán los servicios que ofrece la institución.
-                  </ul>
+                  <form role="form">
+                      <div class="form-group col-md-10">
+                        <label for="ejemplo_email_1">Nombre</label>
+                        <input type="input" class="form-control" id="ejemplo_email_1"
+                               placeholder="Introduce tu email">
+                      </div>
+                      <div class="form-group col-md-10">
+                        <label for="ejemplo_password_1">Email</label>
+                        <input type="email" class="form-control" id="ejemplo_password_1" 
+                               placeholder="Contraseña">
+                      </div>
+                      <div class="form-group col-md-10">
+                        <label for="ejemplo_password_1">Mensaje</label>
+                          <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Mensaje">
+                          </textarea>
+                      </div>
+                      <div class="form-group col-md-10" align="right">
+                      <button type="submit" class="btn btn-primary">Enviar</button>
+                      </div>
+
+              </form>
                </div>
                <div class="col-md-2 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
                   <h3>Siguenos</h3>
