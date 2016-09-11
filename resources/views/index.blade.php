@@ -1,5 +1,4 @@
 @extends('layouts.master')
-
 @section('content')
     <aside id="fh5co-hero" class="js-fullheight  hidden-xs-down hidden-sm-down" >
 		<div class="flexslider js-fullheight ">
