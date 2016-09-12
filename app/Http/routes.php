@@ -20,5 +20,12 @@ Route::get('/','MainController@index');
 */
 
 Route::get('admin','DashboardController@index');
-Route::get('especialidades','DashboardController@especialidades');
-#Route::resource('nombre')
+
+/*
+|--------------------------------------------------------------------------
+| Rutas para gestión de especialidades
+|--------------------------------------------------------------------------
+*/
+
+Route::get('especialidades','EspecialidadesController@index');
+Route::post('save_especialidad','EspecialidadesController@save');

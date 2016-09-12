@@ -17,7 +17,7 @@ class CreateEspecialidadTable extends Migration {
 			$table->integer('ID')->primary();
 			$table->string('ESPECIALIDAD', 100);
 			$table->integer('FK_ESTATUS_ESPECIALIDAD_ID')->default(1)->index('fk_especialidad_estatus');
-			$table->integer('ESTATUS_REGISTRO');
+			$table->integer('ESTATUS_REGISTRO')->default(1);
 		});
 	}
 
