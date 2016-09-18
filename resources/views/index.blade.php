@@ -106,7 +106,7 @@
       </div>
    </div>
 </div>
-<div id="fh5co-work-section" class="fh5co-light-grey-section">
+	<div id="fh5co-work-section" class="fh5co-light-grey-section">
    <div class="container">
       <div class="row">
          <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box padding-top">
@@ -289,7 +289,7 @@
       </div>
    </div>
 </div>
-<div class="fh5co-cta" style="background-image: url(images/imagen3.jpg);background-size:100% 95%" >
+<div class="fh5co-cta" style="background-image: url(images/imagen3.jpg);background-size:100% 100%" >
    <div class="overlay"></div>
    <div class="container">
       <div class="col-md-12 text-center animate-box">
