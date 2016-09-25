@@ -29,3 +29,11 @@ Route::get('admin','DashboardController@index');
 
 Route::get('especialidades','EspecialidadesController@index');
 Route::post('save_especialidad','EspecialidadesController@save');
+
+/*
+|--------------------------------------------------------------------------
+| Rutas para gestión de médicos
+|--------------------------------------------------------------------------
+*/
+
+Route::get('medicos','MedicosController@index');

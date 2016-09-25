@@ -16,7 +16,7 @@
 			 	<div class="form-group">
 		    		<div class="input-group">
               <input type="hidden" name="_token" value="{{ csrf_token() }}" id='token'>
-			     		<input type="text" class="form-control inputSave" id="exampleInputAmount" placeholder="Nueva especialidad" name='ESPECIALIDAD'>
+			     		<input type="text" class="form-control inputSave" id="nmEspecialidad" placeholder="Nueva especialidad" name='nmEspecialidad'>
 			      	<div class="input-group-addon btn-registrar" id='save'>Registrar</div>
 		    		</div>
 			 	</div>
@@ -40,14 +40,4 @@
   	</div>
   </div>
 @stop
-
 <script src="{{ asset('js/administrativos/especialidades.js') }}"></script>
-<style type="text/css">
-  .trDisabled{
-    border-left: solid 3px red
-  }
-  .btn-registrar{
-    background-color: #4db6ac !important;
-    color: white !important;
-  }
-</style>
