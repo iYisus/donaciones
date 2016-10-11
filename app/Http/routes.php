@@ -22,3 +22,10 @@ Route::get('/','MainController@index');
 Route::get('admin','DashboardController@index');
 Route::get('especialidades','DashboardController@especialidades');
 #Route::resource('nombre')
+
+
+#USUARIO
+Route::resource('usuario','UsuarioController');
+Route::post('login','UsuarioController@login');
+Route::get('logout','UsuarioController@logout');
+

@@ -61,10 +61,5 @@
   	</div>
 @stop
 <script type="text/javascript">
-	$('#sidebarmenu').affix({
-      offset: {
-        top: 50
-      }
-    });
-
+	
 </script>
