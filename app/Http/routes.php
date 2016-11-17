@@ -28,4 +28,7 @@ Route::get('especialidades','DashboardController@especialidades');
 Route::resource('usuario','UsuarioController');
 Route::post('login','UsuarioController@login');
 Route::get('logout','UsuarioController@logout');
+Route::get('perfil','UsuarioController@perfil');		
 
+#MAILCONTROLLER
+Route::resource('mail','MailController');
