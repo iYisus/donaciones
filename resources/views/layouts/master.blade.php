@@ -23,10 +23,13 @@
 <!-- Owl Carousel  -->
 <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
+<!-- TOASTR --> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <!-- Theme style  -->
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <!-- IPN-VZLA CSS -->
 <link rel="stylesheet" href="{{ asset('css/ipnStyles.css') }}">
+
 <!-- Modernizr JS -->
 <script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
 <!-- jQuery -->
@@ -41,37 +44,43 @@
 <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
 <!-- Flexslider -->
 <script src="{{ asset('js/jquery.flexslider-min.js') }}"></script>
-<!-- MAIN JS -->
+<!-- TOASTR -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<!-- MAIN JS TEMPLATE -->
 <script src="{{ asset('js/main.js') }}"></script>
+<script src="{{ asset('js/scriptMain.js') }}"></script>
 <script src="{{ asset('js/user.js') }}"></script>
-<style>
-   p{
-   margin-bottom: 10px;
-   }
-   .sangria{
-   padding-left: 15px;
-   }
-</style>
+<script type="text/javascript">
+   $(function(){
+      scriptMain.init();
+   })
+</script>
 @include('layouts.modals')
 </head>
 <body>
+<div class="fondo-opaco" style="display:none;"></div>
+<div class="spinner-wrapp" style="display:none;">
+  <div class="loader"></div>
+</div>
    <div id="fh5co-page">
       <header id="fh5co-header" role="banner">
          <div class="container">
             <div class="header-inner">
                <h1>
-               <a href="#"><img src="{{ asset('images/logo.jpg') }}" class="logoIPN  hidden-sm hidden-xs "></a>
+               <a href="{{URL('/')}}"><img src="{{ asset('images/logo.jpg') }}" class="logoIPN  hidden-sm hidden-xs "></a>
                <h1 class="hidden-lg hidden-md hidden-sm col-xs-12 ">
                   <center>IPN-Venezuela</center>
                   </a>
                </h1>
                <nav role="navigation">
                   <ul>
-                     <li><a href="#">Inicio</a></li>
-                     <li><a href="#">Acerca</a></li>
-                     <li><a href="#">Eventos</a></li>
-                     <li><a href="#">Comentarios</a></li>
-                     <li><a href="#">Servicios</a></li>
+                     <li><a href="{{URL('/')}}">Inicio</a></li>
+                        @if (Request::is('/'))
+                         <li><a href="#">Acerca</a></li>
+                         <li><a href="#">Eventos</a></li>
+                         <li><a href="#">Comentarios</a></li>
+                         <li><a href="#">Servicios</a></li>
+                        @endif
                      <li>
                         @if(Auth::check()) 
                         <div class="btn-group">
@@ -80,7 +89,7 @@
                            <span class="caret"></span>
                            </button>
                            <ul id="sub-dropdown" class="dropdown-menu">
-                              <li><a href="#" class="remove-background">Mi Perfil</a></li>
+                              <li><a href="{{URL('perfil')}}" class="remove-background">Mi Perfil</a></li>
                               <li><a href="#" class="remove-background">Panel Administrativo</a></li>
                               <li role="separator" class="divider"></li>
                               <li><a href="{{URL('logout')}}" class="remove-background">Cerrar Sesión</a></li>
@@ -118,7 +127,7 @@
                </p>
             </div>
             <div class="col-md-7 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
-               <h3>Nuestros Servicios</h3>
+               <h3>Conctacto</h3>
                <form role="form">
                   <div class="form-group col-md-10">
                      <label for="ejemplo_email_1">Nombre</label>
@@ -153,4 +162,4 @@
       </footer>
    </div>
 </body>
-</html> -->
+</html> 
