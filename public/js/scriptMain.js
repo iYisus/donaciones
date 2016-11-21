@@ -4,6 +4,7 @@ baseUrl : window.location,
 
 	init: function(){
 		this.toastOptions();
+		this.sendMail();
 	},
 	toastOptions:function (){
 		toastr.options = {
@@ -34,5 +35,45 @@ baseUrl : window.location,
 	removeLoader: function(){
 		$("div.fondo-opaco").hide();
 		$("div.spinner-wrapp").hide();
+	},
+
+	sendMail: function (){
+		$("button#enviarMail").on('click', function() {
+			$("div.email-error").removeClass("alert alert-danger").html("");
+            scriptMain.addLoader();
+            token = $('input[name=_token]').val();
+            nombre = $("#nombre_email").val();
+            email = $("#email_send").val();
+            mensaje = $("#mensaje_email").val();
+            $.ajax({
+                type: "POST",
+                url: "sendMail",
+                headers: {'X-CSRF-TOKEN': token},
+                data: {
+                    nombre: nombre,
+                    email: email,
+                    mensaje: mensaje
+                }
+            }).done(function(data) {
+                if(data.estatus == 200) {
+                	toastr.success("Correo enviado éxitosamente!")
+                }else{
+                	toastr.error("Falló al enviar correo!")
+                }
+            }).fail(function(data) {
+            	var mensajes = "";
+            	if (data.status === 422) {
+            		errors = data.responseJSON;
+            		$.each( errors , function( key, value ) {
+          					mensajes += value[0]+" <br>";
+        			});
+                    $("div.email-error").addClass("alert alert-danger").html(mensajes);
+                } else {
+                    toastr.error("Falló al enviar correo!")
+                }
+            }).always(function() {
+                scriptMain.removeLoader();
+            });
+        })
 	}
 }

@@ -10,15 +10,15 @@ user = {
         $("button#enviarForm").on('click', function() {
             scriptMain.addLoader();
             $("div#loginError").html("")
-            token = token = $('input[name=_token]').val();
-            email = $("#email").val();
+            token = $('input[name=_token]').val();
+            user = $("#user").val();
             password = $("#password").val();
             $.ajax({
                 type: "POST",
                 url: "login",
                 headers: {'X-CSRF-TOKEN': token},
                 data: {
-                    email: email,
+                    user: user,
                     password: password
                 }
             }).done(function(data) {

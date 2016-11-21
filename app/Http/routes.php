@@ -31,4 +31,4 @@ Route::get('logout','UsuarioController@logout');
 Route::get('perfil','UsuarioController@perfil');		
 
 #MAILCONTROLLER
-Route::resource('mail','MailController');
+Route::post('sendMail','MailController@sendMail');

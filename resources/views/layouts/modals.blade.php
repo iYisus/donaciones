@@ -10,9 +10,9 @@
         <form action="{{URL('login')}}"  method="POST"  id="loginForm">
         {{ csrf_field() }}
         <div class="form-group">
-          <label for="login-usuario">Email</label>
-          <input type="text" class="form-control" id="email"
-                name="email"  placeholder="Email">
+          <label for="login-usuario">Usuario</label>
+          <input type="text" class="form-control" id="user"
+                name="user"  placeholder="Usuario">
         </div>
         <div class="form-group">
           <label for="password">Contraseña</label>
