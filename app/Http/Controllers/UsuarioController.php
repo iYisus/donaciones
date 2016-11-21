@@ -8,6 +8,7 @@ use PDOException;
 use Illuminate\Http\Request;
 use IPNVZLA\Http\Requests;
 use IPNVZLA\Http\Requests\Login;
+use IPNVZLA\Http\Requests\RegistrarUsuario;
 use IPNVZLA\User;
 use Illuminate\Database\QueryException;
 use Hash;	
@@ -28,7 +29,7 @@ class UsuarioController extends Controller
 	}
 
 	#Funcion para guardar un nuevo usuario
-	public function store(Request $request){
+	public function store(RegistrarUsuario $request){
 			$user = new User();
 			$user->nombre = $request->nombre;
 			$user->apellido = $request->apellido;
@@ -46,7 +47,7 @@ class UsuarioController extends Controller
 	#Funcion para iniciar sesion
 	public function login(Login $request){
 		try {
-			if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+			if (Auth::attempt(['user_name' => $request->user, 'password' => $request->password])) {
 				return response()->json(['error' => '','estatus' => 200]);
 			}else{
 				return response()->json(['error' => "Datos incorrectos!" ,'estatus' => 404]);

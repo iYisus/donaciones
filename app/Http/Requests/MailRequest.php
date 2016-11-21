@@ -4,7 +4,7 @@ namespace IPNVZLA\Http\Requests;
 
 use IPNVZLA\Http\Requests\Request;
 
-class Login extends Request
+class MailRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class Login extends Request
     public function rules()
     {
         return [
-            "user" => "required",
-            "password" => "required",
+            "nombre" => "required|max:20",
+            "email" => "required|max:50|email",
+            "mensaje" => "required|max:350",
         ];
     }
 }

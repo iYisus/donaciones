@@ -127,27 +127,26 @@
                </p>
             </div>
             <div class="col-md-7 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
-               <h3>Conctacto</h3>
-               <form role="form">
-                  <div class="form-group col-md-10">
-                     <label for="ejemplo_email_1">Nombre</label>
-                     <input type="input" class="form-control" id="ejemplo_email_1"
-                        placeholder="Introduce tu email">
+               <h3>Conctacto/Sugerencias</h3>
+               <div class="form-group col-md-10">
+                  <div class="email-error error-message" style="font-weight:500;font-size:16px;"></div>
+                     <label for="nombre_email">Nombre</label>
+                     <input type="input" class="form-control" name="nombre_email" id="nombre_email"
+                        placeholder="Nombre">
                   </div>
                   <div class="form-group col-md-10">
-                     <label for="ejemplo_password_1">Email</label>
-                     <input type="email" class="form-control" id="ejemplo_password_1" 
-                        placeholder="Contraseña">
+                     <label for="email">Email</label>
+                     <input type="email" class="form-control" name="email_send"  id="email_send"
+                        placeholder="Tu email">
                   </div>
                   <div class="form-group col-md-10">
-                     <label for="ejemplo_password_1">Mensaje</label>
-                     <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Mensaje">
+                     <label for="mensaje">Mensaje</label>
+                     <textarea  cols="30" rows="5" name="mensaje_email" id="mensaje_email" class="form-control" placeholder="Tu mensaje">
                      </textarea>
                   </div>
                   <div class="form-group col-md-10" align="right">
-                     <button type="submit" class="btn btn-primary">Enviar</button>
+                     <button  class="btn btn-primary" id="enviarMail">Enviar</button>
                   </div>
-               </form>
             </div>
             <div class="col-md-2 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
                <h3>Siguenos</h3>
