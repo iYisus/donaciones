@@ -131,9 +131,9 @@ class UsuarioController extends Controller
     public function updateInfo(ModificarPerfil $request){
     try {
             $user = User::find(Auth::user()->id)->update($request->all());
-            return redirect()->action('UsuarioController@getPerfil',['estatus'=> 200, "mensaje" => 'Has actualizado tu información éxitosamente.']);
+            return redirect('/perfil')->with('estatus',200)->with( "mensaje", 'Has actualizado tu información éxitosamente.');
         } catch (QueryException $e) {
-            return redirect()->action('UsuarioController@getPerfil',['estatus'=> 500, "mensaje" => 'Ha ocurrido un error al modificar la información!']);
+            return view('usuario.perfil_usuario',['estatus'=> 500, "mensaje" => 'Ha ocurrido un error al modificar la información!']);
         }
             
     }
