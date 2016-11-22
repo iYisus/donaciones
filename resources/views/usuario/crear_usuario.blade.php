@@ -20,14 +20,7 @@
 					<h3 class="panel-title "><i class="icon-users"></i> Registrar Usuario <i class="icon-arrow-left  pull-right" onclick="history.go(-1);" style="cursor:pointer;"></i>	</h3>
 			</div>
 			<div class="panel-body">
-			@if(count($errors) > 0)
-				<div class="alert alert-danger">
-			      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-			      @foreach($errors->all() as $error)
-						<li>{{$error}}</li>
-			      @endforeach
-			    </div>
-			@endif
+			@include('showErrors')
 			<form action="{{URL::route('usuario.store')}}" method="POST" id="registrarUsuario">
 			{{ csrf_field() }}
 			<div class="col-md-6">
@@ -84,6 +77,8 @@
 
 </div>
 <script type="text/javascript">
-	user.init();
+	$(function(){
+		user.init();
+	})
 </script>
 @endsection

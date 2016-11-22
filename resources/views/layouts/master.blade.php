@@ -52,6 +52,7 @@
 <script src="{{ asset('js/user.js') }}"></script>
 <script type="text/javascript">
    $(function(){
+      baseUrl = "{{URL('/')}}"
       scriptMain.init();
    })
 </script>
@@ -151,10 +152,10 @@
             <div class="col-md-2 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
                <h3>Siguenos</h3>
                <ul class="fh5co-social">
-                  <li><a href="#"><i class="icon-twitter twitter-color"></i> Twitter</a></li>
-                  <li><a href="#"><i class="icon-facebook facebook-color" ></i> Facebook</a></li>
-                  <li><a href="#"><i class="icon-google-plus googleplus-color"></i> Google Plus</a></li>
-                  <li><a href="#"><i class="icon-instagram" style="color:#e95950"></i> Instagram</a></li>
+                  <li><a href="https://twitter.com/IPNVzla" target="_blank"><i class="icon-twitter twitter-color"></i> Twitter</a></li>
+                  <li><a href="https://www.facebook.com/Instituto-de-Previsión-del-Niño-1780454348900301/" target="_blank"><i class="icon-facebook facebook-color" ></i> Facebook</a></li>
+                  <li><a href="https://plus.google.com/u/0/118352504854484493430" target="_blank"><i class="icon-google-plus googleplus-color"></i> Google Plus</a></li>
+                  <li><a href="https://www.instagram.com/IPNVZLa/" target="_blank"><i class="icon-instagram" style="color:#e95950"></i> Instagram</a></li>
                </ul>
             </div>
          </div>

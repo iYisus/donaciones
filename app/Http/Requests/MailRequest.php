@@ -23,10 +23,21 @@ class MailRequest extends Request
      */
     public function rules()
     {
-        return [
-            "nombre" => "required|max:20",
-            "email" => "required|max:50|email",
-            "mensaje" => "required|max:350",
-        ];
+       
+
+        if(count($this) > 1){
+            $rules  =  [
+                "nombre" => "required|max:20",
+                "email" => "required|max:50|email",
+                "mensaje" => "required|max:350",
+            ];
+        }else{
+            $rules  =  [
+                "email" => "required|max:50|email",
+            ];
+        }
+
+        return $rules;
+        
     }
 }

@@ -7,7 +7,7 @@ user = {
     },
 
     login: function() {
-        $("button#enviarForm").on('click', function() {
+        $("button#enviarForm").on('click', function(e) {
             scriptMain.addLoader();
             $("div#loginError").html("")
             token = $('input[name=_token]').val();
@@ -15,18 +15,18 @@ user = {
             password = $("#password").val();
             $.ajax({
                 type: "POST",
-                url: "login",
+                url: baseUrl+"/login",
                 headers: {'X-CSRF-TOKEN': token},
                 data: {
                     user: user,
                     password: password
                 }
             }).done(function(data) {
-                console.log(data);
                 if (data.estatus != 200) {
                     toastr.error(data.error);
                 } else {
-                    window.location.href = scriptMain.baseUrl + "/"
+                    window.location.href = baseUrl+"/";
+
                 }
             }).fail(function(data) {
                 if (data.status === 422) {
@@ -52,5 +52,30 @@ user = {
             $("#registrarUsuario").submit();
         })
 
+    },
+
+    recoveryPassword: function(){
+        $("a#recoveryPassword").on('click', function(){
+            $("#recoveryForm").submit();
+        })
+    },
+
+    modificarPerfil: function(){
+        $("a#sendInfo").on('click', function(){
+            $("#formInfo").submit();
+        })
+    },
+
+    modificarPassword: function(){
+        $("a#sendPassword").on('click', function(){
+            $("#formPassword").submit();
+        })
+    },
+
+    modificarEmail: function(){
+        $("a#sendEmail").on('click', function(){
+            $("#formEmail").submit();
+        })
     }
+
 }

@@ -28,7 +28,12 @@ Route::get('especialidades','DashboardController@especialidades');
 Route::resource('usuario','UsuarioController');
 Route::post('login','UsuarioController@login');
 Route::get('logout','UsuarioController@logout');
-Route::get('perfil','UsuarioController@perfil');		
+Route::get('password', 'UsuarioController@password');
+Route::post('password', 'UsuarioController@verificarEmail');
+Route::any('perfil', 'UsuarioController@getPerfil');
+Route::post('modificarInfo', 'UsuarioController@updateInfo');
+Route::post('modificarPassword', 'UsuarioController@updatePassword');
+Route::post('modificarEmail', 'UsuarioController@updateEmail');
 
 #MAILCONTROLLER
 Route::post('sendMail','MailController@sendMail');
