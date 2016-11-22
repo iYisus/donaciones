@@ -25,7 +25,7 @@
         </div>
         <div class="row">
           <div class="col-md-12" align="center">
-            <h5>Olvidé mi <a href="">contraseña</a></h5>
+            <h5>Olvidé mi <a href="{{URL('password')}}">contraseña</a></h5>
           </div>
           <div class="col-md-12" align="center">
              <h5>¿Aún no tienes cuenta? <a href="{{URL::route('usuario.create')}}">Registraste!</a></h5>
