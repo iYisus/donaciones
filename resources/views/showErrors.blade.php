@@ -21,3 +21,17 @@
 	<li>{{$mensaje}}</li>
 </div>
 @endif
+<!-- Session Flash Errors-->
+@if(session('estatus') and session('estatus') == 500)
+<div class="alert alert-danger">
+	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	<li>{{session('mensaje')}}</li>
+</div>
+@endif
+<!-- Estatus 200 -->
+@if(session('estatus') and session('estatus') == 200)
+<div class="alert alert-success">
+	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	<li>{{session('mensaje')}}</li>
+</div>
+@endif
