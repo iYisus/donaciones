@@ -74,13 +74,13 @@
                   </a>
                </h1>
                <nav role="navigation">
-                  <ul>
+                  <ul class="menu">
                      <li><a href="{{URL('/')}}">Inicio</a></li>
                         @if (Request::is('/'))
-                         <li><a href="#">Acerca</a></li>
-                         <li><a href="#">Eventos</a></li>
-                         <li><a href="#">Comentarios</a></li>
-                         <li><a href="#">Servicios</a></li>
+                         <li><a  href="#acerca">Acerca</a></li>
+                         <li><a href="#eventos">Eventos</a></li>
+                         <li><a href="#servicios">Servicios</a></li>
+                         <li><a href="#contacto">Contacto</a></li>
                         @endif
                      <li>
                         @if(Auth::check()) 
@@ -112,9 +112,9 @@
       @yield('content')
       <!--################-->
       <footer id="fh5co-footer" role="contentinfo" >
-         <div class="container">
+         <div class="container" id="contacto">
             <div class="col-md-3 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
-               <h3>Encuentranos</h3>
+               <h3>Oficina Principal</h3>
                <p>Av. Francisco de Miranda, entre calle Lebrún y 2da Calle El Dorado. Urb.
                   Campo Rico. Petare. 
                   <br>
@@ -161,5 +161,15 @@
          </div>
       </footer>
    </div>
+   <script type="text/javascript">
+   $(function(){
+      $(".menu a").on("click",function(){
+         var seccion = $(this).attr("href");
+         $("body,html").animate({scrollTop:$(seccion).offset().top-100},2000)
+         return false;
+     })
+   })
+</script>
 </body>
 </html> 
+
