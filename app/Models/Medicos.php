@@ -8,5 +8,17 @@ class Medicos extends Model
 {
     protected $table = 'medicos';
 
-    // protected $fillable = ['ESPECIALIDAD,FK_ESTATUS_ESPECIALIDAD_ID'];
+   	public $timestamps = false;
+
+    public function order_data_index($data){
+    	$response = [];
+    	foreach ($data as $key => $value) {
+    		if ( array_key_exists($value['FK_ESPECIALIDAD_ID'], $response) ){
+    			$response[$value['FK_ESPECIALIDAD_ID']][$value['ID']] = $value;
+    		} else {
+    			$response[$value['FK_ESPECIALIDAD_ID']] = [$value['ID'] => $value];
+    		}
+    	}
+    	return $response;
+    }
 }

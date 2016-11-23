@@ -11,7 +11,9 @@
   <!-- Input/boton para registrar -->
   <div class="row">
   	<div class="col-md-2">
-      <div class="input-group-addon btn-registrar" id='save'>Registrar</div>
+      <div class="input-group-addon btn-registrar" data-toggle="modal" data-target="#medicosModal">
+        Registrar
+      </div>
   	</div>
   </div>
   <!-- Tabla de contenido -->
@@ -20,8 +22,12 @@
       @include('medicos.content')
   	</div>
   </div>
+  <input type="hidden" name="_token" value="{{ csrf_token() }}" id='token'>
+  <!-- Modal -->
+  <div class="modal fade" id="medicosModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    @include('medicos.modal')
+  </div>
 @stop
-
 <script src="{{ asset('js/administrativos/medicos.js') }}"></script>
 <style type="text/css">
   .trDisabled{

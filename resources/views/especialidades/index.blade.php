@@ -16,7 +16,7 @@
 			 	<div class="form-group">
 		    		<div class="input-group">
               <input type="hidden" name="_token" value="{{ csrf_token() }}" id='token'>
-			     		<input type="text" class="form-control inputSave" id="nmEspecialidad" placeholder="Nueva especialidad" name='nmEspecialidad'>
+			     		<input type="text" class="form-control inputSave" id="nmEspecialidad" placeholder="Nueva especialidad" name='ESPECIALIDAD'>
 			      	<div class="input-group-addon btn-registrar" id='save'>Registrar</div>
 		    		</div>
 			 	</div>
