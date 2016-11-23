@@ -44,5 +44,5 @@
 <script type="text/javascript">
 $(function(){
     user.init();
-})
+ })
  </script>

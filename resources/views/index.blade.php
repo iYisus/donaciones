@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
 <div id="fh5co-services-section">
-   <div class="container">
+   <div class="container" id="acerca">
       <div class="row">
          <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
             <h3>Instituto de Previsión del Niño</h3>
@@ -106,8 +106,8 @@
       </div>
    </div>
 </div>
-	<div id="fh5co-work-section" class="fh5co-light-grey-section">
-   <div class="container">
+<div id="fh5co-work-section" class="fh5co-light-grey-section">
+   <div class="container" id="eventos">
       <div class="row">
          <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box padding-top">
             <h2>Últimos/Próximos  Eventos</h2>
@@ -154,7 +154,7 @@
       </div>
    </div>
 </div>
-<div id="fh5co-testimony-section">
+<!-- <div id="fh5co-testimony-section">
    <div class="container">
       <div class="row">
          <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box padding-top">
@@ -204,8 +204,8 @@
          </div>
       </div>
    </div>
-</div>
-<div id="fh5co-blog-section" class="fh5co-light-grey-section">
+   </div> -->
+<!--<div id="fh5co-blog-section" class="fh5co-light-grey-section">
    <div class="container">
       <div class="row">
          <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box padding-top">
@@ -243,48 +243,86 @@
          </div>
       </div>
    </div>
-</div>
+   </div>-->
 <div id="fh5co-pricing-section">
-   <div class="container">
+   <div class="container" id="servicios">
       <div class="row">
          <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box padding-top">
-            <h2>Sugerencias</h2>
+            <h2>Servicios</h2>
+            <p>Servicios que ofrece la institución a nivel nacional.</p>
          </div>
       </div>
       <div class="row">
-         <div class="pricing">
-            <div class="col-md-3 animate-box">
-               <div class="price-box">
-                  <h2 class="pricing-plan">Starter</h2>
-                  <div class="price"><sup class="currency">$</sup>9<small>/month</small></div>
-                  <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-                  <a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
+         <div class="pricing animate-box">
+         <div class="col-md-6 col-sm-6 col-xs-12">
+               <div class="card">
+                  <div class="card-content">
+                     <div class="card-header-grey">
+                        <h1 class="card-heading">ODONTOLOGÍA</h1>
+                     </div>
+                     <div class="card-body">
+                        <p class="card-p">
+                           <b>Caracas</b><br>
+                           Av. Francisco de Miranda, entre calle Lebrún y 2da Calle El Dorado. Urb.
+                           Campo Rico. Petare <br>   
+                           <b>Santa Teresa</b><br>
+                           Santa Teresa, Esq. De Glorieta, Centro Residencial As de Oro, Mezzanina
+                           Catia, Calle Maury, N° 12, Av. Sucre.
+                        </p>
+                     </div>
+                  </div>
                </div>
             </div>
-            <div class="col-md-3 animate-box">
-               <div class="price-box">
-                  <h2 class="pricing-plan">Basic</h2>
-                  <div class="price"><sup class="currency">$</sup>27<small>/month</small></div>
-                  <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-                  <a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+               <div class="card">
+                  <div class="card-content">
+                     <div class="card-header-grey">
+                        <h1 class="card-heading">CENTRO PSICOPEDAGÓGICO</h1>
+                     </div>
+                     <div class="card-body">
+                        <p class="card-p">
+                           <b>Caracas</b><br>
+                           Av. Francisco de Miranda, entre calle Lebrún y 2da Calle El Dorado. Urb.
+                           Campo Rico. Petare <br>   
+                           <b>Santa Teresa</b><br>
+                           Santa Teresa, Esq. De Glorieta, Centro Residencial As de Oro, Mezzanina
+                           Catia, Calle Maury, N° 12, Av. Sucre.
+                        </p>
+                     </div>
+                  </div>
                </div>
             </div>
-            <div class="col-md-3 animate-box">
-               <div class="price-box popular">
-                  <h2 class="pricing-plan pricing-plan-offer">Pro <span>Best Offer</span></h2>
-                  <div class="price"><sup class="currency">$</sup>74<small>/month</small></div>
-                  <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-                  <a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+               <div class="card">
+                  <div class="card-content">
+                     <div class="card-header-grey">
+                        <h1 class="card-heading">PEDIATRÍA</h1>
+                     </div>
+                     <div class="card-body">
+                        <p class="card-p">
+                           <b>Santa Teresa</b><br>
+                           Santa Teresa, Esq. De Glorieta, Centro Residencial As de Oro, Mezzanina
+                        </p>
+                     </div>
+                  </div>
                </div>
             </div>
-            <div class="col-md-3 animate-box">
-               <div class="price-box">
-                  <h2 class="pricing-plan">Unlimited</h2>
-                  <div class="price"><sup class="currency">$</sup>140<small>/month</small></div>
-                  <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-                  <a href="#" class="btn btn-select-plan btn-sm">Select Plan</a>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+               <div class="card">
+                  <div class="card-content">
+                     <div class="card-header-grey">
+                        <h1 class="card-heading">OFTALMOLOGÍA</h1>
+                     </div>
+                     <div class="card-body">
+                        <p class="card-p">
+                           <b>Santa Teresa</b><br>
+                           Santa Teresa, Esq. De Glorieta, Centro Residencial As de Oro, Mezzanina
+                        </p>
+                     </div>
+                  </div>
                </div>
             </div>
+
          </div>
       </div>
    </div>
