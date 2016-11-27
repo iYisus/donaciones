@@ -76,7 +76,7 @@ class UsuarioController extends Controller
     #Funcion para iniciar sesion
     public function login(Login $request){
         try {
-            if (Auth::attempt(['user_name' => $request->user, 'password' => $request->password])) {
+            if (Auth::attempt(['user_name' => $request->user_name, 'password' => $request->password])) {
                 return response()->json(['error' => '','estatus' => 200]);
             }else{
                 return response()->json(['error' => "Datos incorrectos!" ,'estatus' => 404]);

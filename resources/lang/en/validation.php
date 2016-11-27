@@ -91,10 +91,40 @@ return [
     |
     */
 
-    'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+    'custom'               => [
+        'user_name' => [
+            'required' => 'The user field is required.',
+            'min' => 'The user field must be at least :min characters.',
+            'max' => 'The user field may not be greater than :max characters.',
+            'unique' => 'The user has already been taken.',
         ],
+        'nombre' => [
+            'required' => 'The name field is required.',
+        ],
+        'apellido' => [
+            'required' => 'The last name field is required.',
+        ],
+        'password_nueva' => [
+            'required' => 'The new password field is required.',
+            'min' => 'The new password field field must be at least :min characters.',
+            'max' => 'The new password field field may not be greater than :max characters.',
+        ],
+        'password_conf' => [
+            'required' => 'The confirmation password field is required.',
+            'min' => 'The confirmation password  field must be at least :min characters.',
+            'max' => 'The confirmation password  field may not be greater than :max characters.',
+            'same' => 'The passwords must match',
+        ],
+        'mensaje_email' => [
+            'required' => 'The message field is required.',
+            'max'=> 'The message field may not be greater than :max characters.'
+        ],
+        'correo_actual' => [
+            'required' => 'The current email field is required.',
+            'max'=> 'The current email field may not be greater than :max characters.',
+            'email' => 'The current email field must be a valid email address.'
+        ],
+
     ],
 
     /*

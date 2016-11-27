@@ -11,14 +11,14 @@ user = {
             scriptMain.addLoader();
             $("div#loginError").html("")
             token = $('input[name=_token]').val();
-            user = $("#user").val();
+            user_name = $("#user").val();
             password = $("#password").val();
             $.ajax({
                 type: "POST",
                 url: baseUrl+"/login",
                 headers: {'X-CSRF-TOKEN': token},
                 data: {
-                    user: user,
+                    user_name: user_name,
                     password: password
                 }
             }).done(function(data) {
@@ -30,7 +30,12 @@ user = {
                 }
             }).fail(function(data) {
                 if (data.status === 422) {
-                    $("div#loginError").html("Campos Usuario/Contraseña no pueden estar vaciós")
+                    var mensajes = "";
+                    errors = data.responseJSON;
+                    $.each( errors , function( key, value ) {
+                         mensajes += value[0]+" <br>";
+                    });
+                    $("div#loginError").html(mensajes)
                 } else {
                     toastr.error('Falló la conexión!');
                 }

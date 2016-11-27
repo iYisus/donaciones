@@ -4,8 +4,8 @@
    <div class="container" id="acerca">
       <div class="row">
          <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
-            <h3>Instituto de Previsión del Niño</h3>
-            <p>Conoce un poco más de nuestros principales objetivos...</p>
+            <h3>{{ trans('informacion.titulo') }}</h3>
+            <p>{{ trans('informacion.subtitulo') }}</p>
          </div>
       </div>
       <div class="row">
@@ -13,20 +13,9 @@
             <div class="services">
                <i class="icon-home"></i>
                <div class="desc"  style="text-align: justify;">
-                  <p><b>El Instituto de Previsión del Niño</b>, surge el 21 de mayo de 1979, por iniciativa
-                     de la Sra. Betty Urdaneta de Herrera Campins, quien continúa al frente de la
-                     Presidencia de esta institución. La Sra. Herrera, unida a un grupo de
-                     personas con inquietudes sociales, desarrollan la idea a través de una
-                     institución privada con las siguientes características: Asociación Civil sin fines
-                     de lucro, apolítica y con planes definidos para su autofinanciamiento, lo que
-                     garantiza su permanencia en el tiempo y el cumplimiento de sus objetivos,
-                     orientados a mejorar las condiciones sociales, morales y materiales de los
-                     niños de escasos recursos. Para este fin, los Junta Directiva elabora
-                     anualmente un plan general, destinado a implementar o continuar programas
-                     socioeconómicos, que garanticen de modo eficiente el desarrollo integral del
-                     niño, dándole primordial importancia a programas de índole preventivo.
-                     La Institución dirige sus acciones en cuatro líneas: educación, Coordinación
-                     Institucional. Organización e Investigación.
+                  <p>
+                     <b>El {{ trans('informacion.titulo') }} </b>
+                     {{ trans('informacion.acerca') }}
                   </p>
                </div>
             </div>
@@ -35,7 +24,7 @@
             <div class="bg">
                <img src="images/fundadores.jpg"   alt="" class="img-inicio">
                <div class="overlay">
-                  <h3><span>Nuestros Fundadores</span></h3>
+                  <h3><span>{{ trans('informacion.nuestros_fundadores') }}</span></h3>
                </div>
             </div>
          </div>
@@ -45,7 +34,7 @@
             <div class="bg">
                <img src="images/imagen1.jpg"   alt="" class="img-inicio">
                <div class="overlay">
-                  <h3><span>Ins. de Previsión del Niño</span></h3>
+                  <h3><span>{{ trans('informacion.ins_niño') }}</span></h3>
                </div>
             </div>
          </div>
@@ -54,17 +43,12 @@
                <i class="icon-book"></i>
                <div class="desc"  style="text-align: justify;">
                   <p>
-                     <b>OBJETIVOS</b><br>
-                     Asegurar medios idóneos de previsión para cubrir adecuadamente la mayor
-                     cantidad de riesgos posibles que afectan a los niños venezolanos. A tal fin el
-                     Instituto procurará:
+                     <b>{{ trans('informacion.objetivos_titulo') }}</b><br>
+                     {{ trans('informacion.objetivos') }}
                   <div class="sangria">
-                     a) Propiciar al mejoramiento de las condiciones sociales, intelectuales,
-                     físicas, morales y ambientales del niño.
+                     a) {{ trans('informacion.objetivos_a') }}
                      <br>
-                     b) Promover y participar, directa o indirectamente, en la creación de
-                     sistemas de protección socioeconómicas que garanticen el desarrollo
-                     integral, familiar y social del niño.
+                     b) {{ trans('informacion.objetivos_b') }}
                   </div>
                   </p>
                </div>
@@ -76,21 +60,13 @@
             <div class="services margin-top">
                <i class="icon-users"></i>
                <div class="desc"  style="text-align: justify;">
-                  <p><b>Misión</b>
-                     El preescolar “Instituto de Previsión del Niño” Inscrito en el
-                     Ministerio del Poder Popular para la Educación, ubicado en Santa
-                     Rosa Municipio Trujillo. Estado Trujillo, tiene como meta
-                     ofrecer una formación Integral en un ambiente agradable a niños
-                     en edad comprendida de 3 a 6 años de edad.
+                  <p><b>{{ trans('informacion.mision_titulo') }}</b>
+                     {{ trans('informacion.mision') }}
                   </p>
                </div>
                <div class="desc"  style="text-align: justify;">
-                  <p><b>Visión</b>
-                     Enseñar, Educar, Formar niños y niñas con
-                     conocimientos básicos y útiles donde se les permita
-                     actuar y desenvolverse en su mundo de imaginación
-                     con un aprendizaje eficaz, que se sientan felices y
-                     seguros de si mismos.
+                  <p><b>{{ trans('informacion.vision_titulo') }}</b>
+                     {{ trans('informacion.vision') }}
                   </p>
                </div>
             </div>
@@ -99,7 +75,7 @@
             <div class="bg">
                <img src="images/imagen2.jpg"   alt="" class="img-inicio">
                <div class="overlay">
-                  <h3><span>Enseñar, Educar y Formar</span></h3>
+                  <h3><span>{{ trans('informacion.ens_edc_form') }}</span></h3>
                </div>
             </div>
          </div>
@@ -110,8 +86,8 @@
    <div class="container" id="eventos">
       <div class="row">
          <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box padding-top">
-            <h2>Últimos/Próximos  Eventos</h2>
-            <p>Eventos realizados por la institución  </p>
+            <h2>{{ trans('informacion.titulo_evento') }}</h2>
+            <p>{{ trans('informacion.subtitulo_evento') }} </p>
          </div>
       </div>
       <div class="row">
@@ -149,7 +125,7 @@
             </a>
          </div>
          <div class="col-md-12 text-center animate-box">
-            <p><a href="#" class="btn btn-primary with-arrow">Ver mas eventos <i class="icon-arrow-right"></i></a></p>
+            <p><a href="#" class="btn btn-primary with-arrow">{{ trans('palabras.ver_eventos') }} <i class="icon-arrow-right"></i></a></p>
          </div>
       </div>
    </div>
@@ -248,8 +224,8 @@
    <div class="container" id="servicios">
       <div class="row">
          <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box padding-top">
-            <h2>Servicios</h2>
-            <p>Servicios que ofrece la institución a nivel nacional.</p>
+            <h2>{{ trans('informacion.titulo_servicios') }}</h2>
+            <p>{{ trans('informacion.subtitulo_servicios') }}</p>
          </div>
       </div>
       <div class="row">
@@ -258,7 +234,7 @@
                <div class="card">
                   <div class="card-content">
                      <div class="card-header-grey">
-                        <h1 class="card-heading">ODONTOLOGÍA</h1>
+                        <h1 class="card-heading">{{ trans('palabras.odontologia') }}</h1>
                      </div>
                      <div class="card-body">
                         <p class="card-p">
@@ -277,7 +253,7 @@
                <div class="card">
                   <div class="card-content">
                      <div class="card-header-grey">
-                        <h1 class="card-heading">CENTRO PSICOPEDAGÓGICO</h1>
+                        <h1 class="card-heading">{{ trans('palabras.centro_psico') }}</h1>
                      </div>
                      <div class="card-body">
                         <p class="card-p">
@@ -296,7 +272,7 @@
                <div class="card">
                   <div class="card-content">
                      <div class="card-header-grey">
-                        <h1 class="card-heading">PEDIATRÍA</h1>
+                        <h1 class="card-heading">{{ trans('palabras.pediatria') }}</h1>
                      </div>
                      <div class="card-body">
                         <p class="card-p">
@@ -311,7 +287,7 @@
                <div class="card">
                   <div class="card-content">
                      <div class="card-header-grey">
-                        <h1 class="card-heading">OFTALMOLOGÍA</h1>
+                        <h1 class="card-heading">{{ trans('palabras.oftalmologia') }}</h1>
                      </div>
                      <div class="card-body">
                         <p class="card-p">
@@ -331,8 +307,8 @@
    <div class="overlay"></div>
    <div class="container">
       <div class="col-md-12 text-center animate-box">
-         <h3>Ayudanos con un pequeño aporte</h3>
-         <p><a href="#" class="btn btn-primary btn-outline with-arrow">Donar! <i class="icon-arrow-right"></i></a></p>
+         <h3>{{ trans('informacion.titulo_donar') }}</h3>
+         <p><a href="#" class="btn btn-primary btn-outline with-arrow">{{ trans('palabras.donar') }}! <i class="icon-arrow-right"></i></a></p>
       </div>
    </div>
 </div>
