@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
    <html>
       <head>
          <title>@yield('IPN-VENEZUELA')</title>
@@ -75,12 +75,13 @@
                </h1>
                <nav role="navigation">
                   <ul class="menu">
-                     <li><a href="{{URL('/')}}">Inicio</a></li>
+                     <li><a href="{{URL('/')}}">{{ trans('menu.inicio') }}</a></li>
                         @if (Request::is('/'))
-                         <li><a  href="#acerca">Acerca</a></li>
-                         <li><a href="#eventos">Eventos</a></li>
-                         <li><a href="#servicios">Servicios</a></li>
-                         <li><a href="#contacto">Contacto</a></li>
+                         <li><a  href="#acerca">{{ trans('menu.acerca') }}</a></li>
+                         <li><a href="#eventos">{{ trans('menu.eventos') }}</a></li>
+                         <li><a href="#servicios">{{ trans('menu.servicios') }}</a></li>
+                         <li><a href="#contacto">{{ trans('menu.contacto') }}</a></li>
+
                         @endif
                      <li>
                         @if(Auth::check()) 
@@ -90,23 +91,32 @@
                            <span class="caret"></span>
                            </button>
                            <ul id="sub-dropdown" class="dropdown-menu">
-                              <li><a href="{{URL('perfil')}}" class="remove-background">Mi Perfil</a></li>
-                              <li><a href="#" class="remove-background">Panel Administrativo</a></li>
+                              <li><a href="{{URL('perfil')}}" class="remove-background">{{ trans('menu.perfil') }}</a></li>
+                              <li><a href="#" class="remove-background">{{ trans('menu.panel') }}</a></li>
                               <li role="separator" class="divider"></li>
-                              <li><a href="{{URL('logout')}}" class="remove-background">Cerrar Sesión</a></li>
+                              <li><a href="{{URL('logout')}}" class="remove-background">{{    trans('menu.cerrar_sesion') }}</a></li>
                            </ul>
                         </div>
                         @else
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login-modal">
-                        Iniciar Sesión
+                        {{ trans('menu.iniciar_sesion') }}
                         </button>
                         @endif
                      </li>
+                     <li>
+                     <div class="iconos-wrapper">
+                        <a href="{{ URL('lang', ['es']) }}"><img class="iconos-idiomas" src="{{ asset('images/spain.png') }}" alt=""></a>
+                        <a href="{{ URL('lang', ['en']) }}"><img class="iconos-idiomas" src="{{ asset('images/usa.png') }}" alt=""></a> 
+                        <a  href="{{ URL('lang', ['fr']) }}"><img class="iconos-idiomas" src="{{ asset('images/france.png') }}" alt=""></a>  
+                     </div>
+                     </li>
+                     
                   </ul>
                </nav>
             </div>
          </div>
       </header>
+
       <!-- Cotenedor general que heredaran las demas vistas -->
       <div class="container"></div>
       @yield('content')
@@ -114,7 +124,7 @@
       <footer id="fh5co-footer" role="contentinfo" >
          <div class="container" id="contacto">
             <div class="col-md-3 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
-               <h3>Oficina Principal</h3>
+               <h3>{{ trans('palabras.oficina') }}</h3>
                <p>Av. Francisco de Miranda, entre calle Lebrún y 2da Calle El Dorado. Urb.
                   Campo Rico. Petare. 
                   <br>
@@ -128,29 +138,29 @@
                </p>
             </div>
             <div class="col-md-7 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
-               <h3>Conctacto/Sugerencias</h3>
+               <h3>{{ trans('palabras.contacto') }}</h3>
                <div class="form-group col-md-10">
                   <div class="email-error error-message" style="font-weight:500;font-size:16px;"></div>
-                     <label for="nombre_email">Nombre</label>
+                     <label for="nombre_email">{{ trans('palabras.nombre') }}</label>
                      <input type="input" class="form-control" name="nombre_email" id="nombre_email"
-                        placeholder="Nombre">
+                        placeholder="{{ trans('palabras.nombre') }}">
                   </div>
                   <div class="form-group col-md-10">
-                     <label for="email">Email</label>
+                     <label for="email">{{ trans('palabras.email') }}</label>
                      <input type="email" class="form-control" name="email_send"  id="email_send"
-                        placeholder="Tu email">
+                        placeholder="{{ trans('palabras.email') }}">
                   </div>
                   <div class="form-group col-md-10">
-                     <label for="mensaje">Mensaje</label>
-                     <textarea  cols="30" rows="5" name="mensaje_email" id="mensaje_email" class="form-control" placeholder="Tu mensaje">
+                     <label for="mensaje">{{ trans('palabras.mensaje') }}</label>
+                     <textarea  cols="30"  name="mensaje_email" id="mensaje_email" class="form-control" placeholder="{{ trans('palabras.mensaje') }}">
                      </textarea>
                   </div>
                   <div class="form-group col-md-10" align="right">
-                     <button  class="btn btn-primary" id="enviarMail">Enviar</button>
+                     <button  class="btn btn-primary" id="enviarMail">{{ trans('palabras.enviar') }}</button>
                   </div>
             </div>
             <div class="col-md-2 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
-               <h3>Siguenos</h3>
+               <h3>{{ trans('palabras.siguenos') }}</h3>
                <ul class="fh5co-social">
                   <li><a href="https://twitter.com/IPNVzla" target="_blank"><i class="icon-twitter twitter-color"></i> Twitter</a></li>
                   <li><a href="https://www.facebook.com/Instituto-de-Previsión-del-Niño-1780454348900301/" target="_blank"><i class="icon-facebook facebook-color" ></i> Facebook</a></li>

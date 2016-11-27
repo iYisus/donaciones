@@ -47,19 +47,4 @@ class ModificarPerfil extends Request
         return $rules;
     }
 
-    public function messages()
-    {
-        return [
-            'password_conf.required' => 'El campo confirmar contraseña es obligatorio.',
-            'password_conf.min' => 'El campo confirmar contraseña debe ser al menos de 8 caracteres.',
-            'password_conf.max' => 'confirmar contraseña no debe ser mayor que 20 caracteres.',
-            'password_conf.same' => 'Las contraseñas no son iguales.',
-            'password_nueva.required' => 'El campo  contraseña nueva es obligatorio.',
-            'password_nueva.min' => 'El campo  contraseña nueva debe ser al menos de 8 caracteres.',
-            'password_nueva.max' => 'contraseña nueva no debe ser mayor que 20 caracteres.',
-            'password.required' => 'El campo  contraseña es obligatorio.',
-            'password.min' => 'El campo  contraseña debe ser al menos de 8 caracteres.',
-            'password.max' => 'contraseña no debe ser mayor que 20 caracteres.',
-        ];
-    } 
 }

@@ -34,20 +34,6 @@ class RegistrarUsuario extends Request
         ];
     }
 
-    public function messages()
-    {
-        return [
-            'passowrd_conf.required' => 'El campo confirmar contraseña es obligatorio.',
-            'passowrd_conf.min' => 'El campo confirmar contraseña debe ser al menos de 8 caracteres.',
-            'passowrd_conf.max' => 'confirmar contraseña no debe ser mayor que 20 caracteres.',
-            'passowrd_conf.same' => 'Las contraseñas no son iguales.',
-            'user_name.required' => 'El campo usuario  es obligatorio.',
-            'user_name.min' => 'El campo usuario  debe ser al menos de 5 caracteres.',
-            'user_name.max' => 'El campo usuario no debe ser mayor que 15 caracteres.',
-            "email.unique" => "Correo electronico ya se encuentra en uso",
-            "user_name.unique" => "Usuario ya se encuentra en uso",
-        ];
-    }  
 }
 
 

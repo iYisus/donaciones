@@ -16,7 +16,7 @@ return [
     'accepted'             => ':attribute debe ser aceptado.',
     'active_url'           => ':attribute no es una URL válida.',
     'after'                => ':attribute debe ser una fecha posterior a :date.',
-    'alpha'                => ':attribute sólo debe contener letras.',
+    'alpha'                => 'El campo :attribute sólo debe contener letras.',
     'alpha_dash'           => ':attribute sólo debe contener letras, números y guiones.',
     'alpha_num'            => ':attribute sólo debe contener letras y números.',
     'array'                => ':attribute debe ser un conjunto.',
@@ -36,7 +36,7 @@ return [
     'digits_between'       => ':attribute debe tener entre :min y :max dígitos.',
     'dimensions'           => 'Las dimensiones de la imagen :attribute no son válidas.',
     'distinct'             => 'El campo :attribute contiene un valor duplicado.',
-    'email'                => ':attribute no es un correo válido',
+    'email'                => 'El campo :attribute no es un correo válido',
     'exists'               => ':attribute es inválido.',
     'file'                 => 'El campo :attribute debe ser un archivo.',
     'filled'               => 'El campo :attribute es obligatorio.',
@@ -94,11 +94,42 @@ return [
     | specify a specific custom language line for a given attribute rule.
     |
     */
-
     'custom'               => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'user_name' => [
+            'required' => 'El campo usuario  es obligatorio.',
+            'min' => 'El campo usuario  debe ser al menos de :min caracteres.',
+            'max' => 'El campo usuario no debe ser mayor que :max caracteres.',
+            'unique' => 'Usuario ya se encuentra en uso',
         ],
+        'password_conf' => [
+            'required' => 'El campo confirmar contraseña  es obligatorio.',
+            'min' => 'Confirmar contraseña debe ser al menos de :min caracteres.',
+            'max' => 'Confirmar contraseña no debe ser mayor que :max caracteres.',
+            'same' => 'Las contraseñas no son iguales.',
+        ],
+        'password_nueva' => [
+            'required' => 'El campo  contraseña nueva es obligatorio..',
+            'min' => 'El campo contraseña nueva debe ser al menos de :min caracteres.',
+            'max' => 'El campo contraseña nueva no debe ser mayor que :max caracteres.',
+        ],
+        'nombre' => [
+            'required' => 'El campo nombre es requerido.',
+        ],
+        'apellido' => [
+            'required' => 'El campo apellido es requerido.',
+        ],
+        'mensaje_email' => [
+            'required' => 'El campo mensaje es obligatorio.',
+            'max'=> 'El mensaje no debe ser mayor a :max caracteres.'
+        ],
+        'correo_actual' => [
+            'required' => 'El campo correo actual es requerido.',
+            'max'=> 'El campo correo actual  no debe ser mayor que :max caracteres.',
+            'email' => 'El campo correo actual   no es un correo válido',
+        ],
+
+        
+
     ],
 
     /*

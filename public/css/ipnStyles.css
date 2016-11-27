@@ -142,6 +142,22 @@ img,
   top: 50px;
 }
 
+
+.iconos-wrapper a{
+  padding: 0px !important; 
+  text-decoration: none !important;
+}
+#fh5co-header nav ul li .iconos-wrapper a:hover:after{
+  visibility: hidden;
+}
+
+.iconos-idiomas{
+  width: 24px;
+  cursor: pointer;
+  transition:opacity 0.5s linear;*
+  
+}
+
 .container-padding{
   margin-top: 100px;
   padding: 60px;
@@ -410,3 +426,4 @@ img,
         left: 0;
         width: 100%;
       }
+
