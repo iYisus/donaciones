@@ -1,4 +1,4 @@
-<!-- <!-- Modal -->
+<!--  Modal Log in-->
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -40,9 +40,50 @@
     </div>
   </div>
 </div> 
-
+<!--############### Modal Donar ############-->
+<div class="modal fade" id="donar-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header-custom">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h6 class="modal-title" id=""><i class="icon-heart"></i> {{ trans('palabras.donar') }}!</h6>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <span class="donacion-text">
+              {{ trans('texto.donar_titulo') }}...
+            </span>
+          </div>
+        </div>
+        <br>  
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">{{ trans('texto.cuentas_bancarias') }}</div>
+              <div class="panel-body">
+                <ul class="donacion-text">
+                  <li><b>{{ trans('texto.banco') }}:</b> Banco Central de Venezuela</li>
+                  <li><b>{{ trans('palabras.nombre') }}:</b> Instituto de Previsión del Niño</li>
+                  <li><b>{{ trans('texto.nro_cuenta') }}:</b> 2224-5555-6666-222</li>
+                  <hr>
+                  <li><b>{{ trans('texto.banco') }}:</b> Banesco Banco Universal</li>
+                  <li><b>{{ trans('palabras.nombre') }}:</b> Instituto de Previsión del Niño</li>
+                  <li><b>{{ trans('texto.nro_cuenta') }}:</b> 4444-2323-1231-4331</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" data-dismiss="modal"  class="btn btn-primary"> {{ trans('palabras.aceptar') }} </button>
+      </div>
+    </div>
+  </div>
+</div> 
 <script type="text/javascript">
 $(function(){
-    user.init();
+    user.login();
  })
  </script>

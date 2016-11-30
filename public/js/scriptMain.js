@@ -52,7 +52,7 @@ baseUrl : window.location,
                 data: {
                     nombre: nombre,
                     email: email,
-                    mensaje: mensaje
+                    mensaje_email: mensaje
                 }
             }).done(function(data) {
                 if(data.estatus == 200) {

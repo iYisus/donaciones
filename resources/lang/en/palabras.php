@@ -10,7 +10,7 @@ return [
     'usuario' => 'User',
     'contraseña' => 'Password',
     'cerrar' => "Close",
-    'aceptar' => "Acept",
+    'aceptar' => "Accept",
     'ver_eventos' => "See more events",
     'odontologia' => "ODONTOLOGY",
     'centro_psico' => "PSYCHOPEDAGOIC CENTER",
@@ -24,7 +24,17 @@ return [
     'nombre' => 'Name',
     'email' => 'Email',
     'mensaje' => 'Message',
-    'enviar' => 'Send'
+    'enviar' => 'Send',
+    'modificar_correo' => "Update Email",
+    'modificar_info' => "Update Info.",
+    'modificar_password' => "Update Password",
+    'password' => 'Password',
+    'password_nueva' => "New Password",
+    'password_confirmar' => "Password Confirmation",
+    'correo_actual' => "Current Email",
+    'correo_nuevo' => "New Email",
+    'correo_confirmar' => "Email Confirmation",
+    'registrarme' => "Sign up"
  
 
 

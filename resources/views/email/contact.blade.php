@@ -7,7 +7,7 @@
 		Nombre: <b>	{{$nombre}}</b> <br>
 		Email : <b>{{$email}}</b> <br><br>
 		<p>
-			{{$mensaje}}
+			{{$mensaje_email}}
 		</p>
 	</div>
 @endsection

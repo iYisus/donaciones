@@ -48,9 +48,15 @@ class UsuarioController extends Controller
             $user->user_name = $request->user_name;
             $user->password = Hash::make($request->password);
             $user->save();        
-            return view('usuario.crear_usuario',['estatus'=> 200, "mensaje" => 'Te has registrado exitosamente!, Bienvenido a IPN-Venezuela.']);
+            return view('usuario.crear_usuario',['estatus'=> 200, "mensaje" => trans('texto.usuario_registrado')]);
         } catch (QueryException $e) {
-            return view('usuario.crear_usuario',['estatus'=> 500, "mensaje" => 'Ha ocurrido un error al registrarte!']);
+            return view('usuario.crear_usuario',['estatus'=> 500, "mensaje" => trans('texto.error')]);
+        }
+        catch (PDOException $e) {
+            return view('usuario.crear_usuario',['estatus'=> 500, "mensaje" => trans('texto.error')]);
+        }
+        catch (Exception $e) {
+            return view('usuario.crear_usuario',['estatus'=> 500, "mensaje" => trans('texto.error')]);
         }
             
     }
@@ -65,11 +71,11 @@ class UsuarioController extends Controller
             if ($send){
                 $user->password = Hash::make($string);
                 $user->save();
-                return view('usuario.recuperar_pass', ['estatus' => 200, 'mensaje'=> "Se ha enviado un correo con las instrucciones."]);
+                return view('usuario.recuperar_pass', ['estatus' => 200, 'mensaje'=> trans('texto.correo_enviado')]);
             }
-            return view('usuario.recuperar_pass', ['estatus' => 500, 'mensaje'=> "Falló al envíar correo, comunicarse con administrador."]);
+            return view('usuario.recuperar_pass', ['estatus' => 500, 'mensaje'=> trans('texto.correo_fallo')]);
         }
-        return view('usuario.recuperar_pass', ['estatus' => 500, 'mensaje'=> "No se ha encontrado correo."]);
+        return view('usuario.recuperar_pass', ['estatus' => 500, 'mensaje'=> trans('texto.correo_no_encontrado')]);
     }
 
 
@@ -79,14 +85,18 @@ class UsuarioController extends Controller
             if (Auth::attempt(['user_name' => $request->user_name, 'password' => $request->password])) {
                 return response()->json(['error' => '','estatus' => 200]);
             }else{
-                return response()->json(['error' => "Datos incorrectos!" ,'estatus' => 404]);
+                return response()->json(['error' => trans('texto.usuario_incorrecto') ,'estatus' => 404]);
             } 
         } catch (PDOException $e) {
-            return response()->json(['error' => 'Algo ha ido mal, comunicarse con el administrador','estatus' => 500, "mensaje" => (string)$e ]);
+            return response()->json(['error' => trans('texto.error'),'estatus' => 500, "mensaje" => trans('texto.error') ]);
         }
         catch (QueryException $e) {
-            return response()->json(['error' => 'Algo ha ido mal, comunicarse con el administrador','estatus' => 500, "mensaje" => (string)$e ]);
+            return response()->json(['error' => trans('texto.error'),'estatus' => 500, "mensaje" => trans('texto.error')]);
         }
+        catch (Exception $e) {
+            return view('usuario.crear_usuario',['estatus'=> 500, "mensaje" => trans('texto.error')]);
+        }
+
             
     
     }
@@ -112,7 +122,7 @@ class UsuarioController extends Controller
     #Funcion para enviar password al correo
     public function sendPassword($data){
         $mail = Mail::send('email.password', $data, function($msj)  use ($data){
-            $msj->subject("Recuperar contraseña. Instituto de Previsión del Niño");
+            $msj->subject(trans('texto.password_reset'));
             $msj->to($data["email"]);
         });
             if (Mail::failures()) {
@@ -131,9 +141,12 @@ class UsuarioController extends Controller
     public function updateInfo(ModificarPerfil $request){
     try {
             $user = User::find(Auth::user()->id)->update($request->all());
-            return redirect('/perfil')->with('estatus',200)->with( "mensaje", 'Has actualizado tu información éxitosamente.');
+            return redirect('/perfil')->with('estatus',200)->with( "mensaje", trans('texto.modifcar_info'));
         } catch (QueryException $e) {
-            return view('usuario.perfil_usuario',['estatus'=> 500, "mensaje" => 'Ha ocurrido un error al modificar la información!']);
+            return view('usuario.perfil_usuario',['estatus'=> 500, "mensaje" => trans('texto.error')]);
+        }
+        catch (Exception $e) {
+            return view('usuario.perfil_usuario',['estatus'=> 500, "mensaje" => trans('texto.error')]);
         }
             
     }
@@ -146,12 +159,15 @@ class UsuarioController extends Controller
                 $user->fill([
                     'password' => Hash::make($request->password_conf)
                 ])->save();
-                return view('usuario.perfil_usuario',['estatus'=> 200, "mensaje" => 'Tu  					   contraseña se ha modificado éxitosamente!.']);
+                return view('usuario.perfil_usuario',['estatus'=> 200, "mensaje" => trans('texto.password_update')]);
             } 
-        return view('usuario.perfil_usuario',['estatus'=> 500, "mensaje" => 'Tu  					   contraseña actual es incorrecta!.']);     
+        return view('usuario.perfil_usuario',['estatus'=> 500, "mensaje" => trans('texto.current_password')]);     
         }
         catch (QueryException $e) {
-            return view('UsuarioController@getPerfil',['estatus'=> 500, "mensaje" => 'Ha ocurrido un error al modificar la información!']);
+            return view('usuario.perfil_usuario',['estatus'=> 500, "mensaje" => trans('texto.error')]);
+        }
+        catch (Exception $e) {
+            return view('usuario.perfil_usuario',['estatus'=> 500, "mensaje" => trans('texto.error')]);
         }
             
     }
@@ -162,13 +178,15 @@ class UsuarioController extends Controller
 	try {
             if($request->correo_actual == Auth::user()->email){
             	$user = User::find(Auth::user()->id)->update(['email' => $request->confirmar_email]);
-            	return view('usuario.perfil_usuario',['estatus'=> 200, "mensaje" => 'Tu  					   correo se ha modificado éxitosamente!.']);
+            	return view('usuario.perfil_usuario',['estatus'=> 200, "mensaje" => trans('texto.correo_update')]);
             }
-        return view('usuario.perfil_usuario',['estatus'=> 500, "mensaje" => 'Tu correo actual es 
-        									 incorrecto!.']);
+        return view('usuario.perfil_usuario',['estatus'=> 500, "mensaje" => trans('texto.current_email')]);
         }
         catch (QueryException $e) {
-            return view('UsuarioController@getPerfil',['estatus'=> 500, "mensaje" => 'Ha ocurrido un error al modificar la información!']);
+            return view('usuario.perfil_usuario',['estatus'=> 500, "mensaje" => trans('texto.error')]);
+        }
+        catch (Exception $e) {
+            return view('usuario.perfil_usuario',['estatus'=> 500, "mensaje" => trans('texto.error')]);
         }
 
     }

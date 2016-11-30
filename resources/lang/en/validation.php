@@ -124,6 +124,12 @@ return [
             'max'=> 'The current email field may not be greater than :max characters.',
             'email' => 'The current email field must be a valid email address.'
         ],
+        'confirmar_email' => [
+            'required' => 'The confirmation email field is required.',
+            'max'=> 'The confirmation email field may not be greater than :max characters.',
+            'email' => 'The confirmation email field must be a valid email address.',
+            'same'  => 'The emails must match.',
+        ],
 
     ],
 
@@ -138,6 +144,36 @@ return [
     |
     */
 
-    'attributes' => [],
+     'attributes'           => [
+        'nombre'                  => 'name',
+        'usuario'              => 'username',
+        'correo_electronico'     => 'email',
+        'nombre'            => 'name',
+        'apellido'             => 'last name',
+        'contraseña'              => 'password',
+        'confirmacion_contraseña' => 'password_confirmation',
+        'ciudad'                  => 'city',
+        'país'               => 'country',
+        'dirección'               => 'address',
+        'telefono'                 => 'phone',
+        'movil'                => 'mobile',
+        'edad'                   => 'age',
+        'sexo'                   => 'sex',
+        'genero'                => 'gender',
+        'año'                  => 'year',
+        'mes'                 => 'month',
+        'dia'                   => 'day',
+        'hora'                  => 'hour',
+        'minuto'                => 'minute',
+        'segundo'                => 'second',
+        'titutlo'                 => 'title',
+        'contenido'                  => 'body',
+        'descripcion'           => 'description',
+        'extracto'               => 'excerpt',
+        'fecha'                  => 'date',
+        'hora'                  => 'time',
+        'asunto'               => 'subject',
+        'mensaje'               => 'message',
+    ],
 
 ];

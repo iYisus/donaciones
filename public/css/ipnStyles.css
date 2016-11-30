@@ -427,3 +427,30 @@ img,
         width: 100%;
       }
 
+  
+.modal-header-custom {
+    color:#fff;
+    padding:9px 15px;
+    border-bottom:1px solid #eee;
+    background-color: #2969CB;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;
+}
+
+#donar-modal .modal-dialog{
+  width: 680px;
+}
+
+.modal-header-custom .modal-title{
+  color: #fff !important;
+  font-size: 24px;
+
+}
+
+.donacion-text{
+  color: #444;
+}

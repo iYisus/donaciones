@@ -92,7 +92,9 @@
                            </button>
                            <ul id="sub-dropdown" class="dropdown-menu">
                               <li><a href="{{URL('perfil')}}" class="remove-background">{{ trans('menu.perfil') }}</a></li>
-                              <li><a href="#" class="remove-background">{{ trans('menu.panel') }}</a></li>
+                              @unless (Auth::user()->FK_ROL_ID == 2)
+                                <li><a href="#" class="remove-background">{{ trans('menu.panel') }}</a></li>
+                              @endunless
                               <li role="separator" class="divider"></li>
                               <li><a href="{{URL('logout')}}" class="remove-background">{{    trans('menu.cerrar_sesion') }}</a></li>
                            </ul>
@@ -152,7 +154,7 @@
                   </div>
                   <div class="form-group col-md-10">
                      <label for="mensaje">{{ trans('palabras.mensaje') }}</label>
-                     <textarea  cols="30"  name="mensaje_email" id="mensaje_email" class="form-control" placeholder="{{ trans('palabras.mensaje') }}">
+                     <textarea  cols="30" rows="5" name="mensaje_email" id="mensaje_email" class="form-control" >
                      </textarea>
                   </div>
                   <div class="form-group col-md-10" align="right">

@@ -1,9 +1,7 @@
 user = {
 
     init: function() {
-        //this.loginForm();
         this.registerForm();
-        this.login();
     },
 
     login: function() {
