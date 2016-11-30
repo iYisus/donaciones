@@ -12,7 +12,6 @@ class MailController extends Controller
 {
     #Funcion para enviar correo
 	public function sendMail(MailRequest $request){
-		$errors = [];
 		$mail = Mail::send('email.contact', $request->all(), function($msj)  use ($request){
 			$msj->subject("Mensaje de contacto/sugerencia Instituto de Previsión del Niño");
 			$msj->to('ipnvzla@gmail.com');

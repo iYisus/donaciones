@@ -96,8 +96,43 @@ return [
     */
 
     'custom'               => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'user_name' => [
+            'required' => 'Le champ pseudo est obligatoire.',
+            'min' => 'Le champ pseudo doit comporter au moins :min caractères.',
+            'max' => 'Le champ utilisateur ne doit pas être supérieur à :max caractères.',
+            'unique' => "L'pseudo a déjà été prise.",
+        ],
+        'nombre' => [
+            'required' => 'Le champ de nom est requis.',
+        ],
+        'apellido' => [
+            'required' => 'Le dernier champ de nom est requis.',
+        ],
+        'password_nueva' => [
+            'required' => 'Le nouveau mot de passe est requis.',
+            'min' => 'Le nouveau champ de champ de mot de passe doit être au moins :min caractères.',
+            'max' => 'Le champ du nouveau mot de passe ne doit pas être supérieur à :max caractères.',
+        ],
+        'password_conf' => [
+            'required' => 'Le champ de mot de passe de confirmation est requis.',
+            'min' => 'Le champ de mot de passe de confirmation doit être au moins :min caractères.',
+            'max' => 'Le champ de mot de passe de confirmation ne doit pas être supérieur à :max caractères.',
+            'same' => 'Les mots de passe doivent correspondre.',
+        ],
+        'mensaje_email' => [
+            'required' => 'Le champ de message est obligatoire.',
+            'max'=> 'Le champ de message ne doit pas être supérieur à :max caractères.'
+        ],
+        'correo_actual' => [    
+            'required' => 'Le champ de adresse e-mail actuel est obligatoire',
+            'max'=> 'Le champ de adresse e-mail actuel ne doit pas être supérieur à :max caractères.',
+            'email' => 'Le champ de adresse e-mail actuel doit être une adresse e-mail valide.'
+        ],
+        'confirmar_email' => [
+            'required' => 'Le champ adresse e-mail de confirmation est obligatoire.',
+            'max'=> 'Le champ adresse e-mail de confirmation ne doit pas être supérieur à :max caractères.',
+            'email' => 'Le champ adresse e-mail de confirmation doit être une adresse e-mail valide.',
+            'same'  => 'Les champs adresse e-mail de confirmation et nouveau adresse e-mailadresse e-mail doivent être identiques.',
         ],
     ],
 
@@ -113,35 +148,35 @@ return [
     */
 
     'attributes'           => [
-        'name'                  => 'Nom',
-        'username'              => 'Pseudo',
-        'email'                 => 'Adresse e-mail',
-        'first_name'            => 'Prénom',
-        'last_name'             => 'Nom',
-        'password'              => 'Mot de passe',
-        'password_confirmation' => 'Confirmation du mot de passe',
-        'city'                  => 'Ville',
-        'country'               => 'Pays',
-        'address'               => 'Adresse',
-        'phone'                 => 'Téléphone',
-        'mobile'                => 'Portable',
-        'age'                   => 'Age',
-        'sex'                   => 'Sexe',
-        'gender'                => 'Genre',
-        'day'                   => 'Jour',
-        'month'                 => 'Mois',
-        'year'                  => 'Année',
-        'hour'                  => 'Heure',
-        'minute'                => 'Minute',
-        'second'                => 'Seconde',
-        'title'                 => 'Titre',
-        'content'               => 'Contenu',
-        'description'           => 'Description',
-        'excerpt'               => 'Extrait',
-        'date'                  => 'Date',
-        'time'                  => 'Heure',
-        'available'             => 'Disponible',
-        'size'                  => 'Taille',
+        'nombre'                  => 'Nom',
+        'usuario'              => 'Pseudo',
+        'correo_electronico'    => 'Adresse e-mail',
+        'nombre'            => 'Prénom',
+        'apellido'             => 'Nom',
+        'contraseña'              => 'Mot de passe',
+        'confirmacion_contraseña' => 'Confirmation du mot de passe',
+        'ciudad'                  => 'Ville',
+        'pais'               => 'Pays',
+        'direccion'               => 'Adresse',
+        'telefono'                 => 'Téléphone',
+        'movil'                => 'Portable',
+        'edad'                   => 'Age',
+        'sexo'                   => 'Sexe',
+        'genero'                => 'Genre',
+        'dia'                   => 'Jour',
+        'mes'                 => 'Mois',
+        'año'                  => 'Année',
+        'hora'                  => 'Heure',
+        'minuto'                => 'Minute',
+        'segundos'                => 'Seconde',
+        'titulo'                 => 'Titre',
+        'contenido'               => 'Contenu',
+        'descripcion'           => 'Description',
+        'extracto'               => 'Extrait',
+        'fecha'                  => 'Date',
+        'hora'                  => 'Heure',
+        'disponible'             => 'Disponible',
+        'tamaño'                  => 'Taille',
     ],
 
 ];

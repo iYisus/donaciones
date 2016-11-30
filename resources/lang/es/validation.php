@@ -127,7 +127,12 @@ return [
             'max'=> 'El campo correo actual  no debe ser mayor que :max caracteres.',
             'email' => 'El campo correo actual   no es un correo válido',
         ],
-
+        'confirmar_email' => [
+            'required' => 'El campo confirmar email es requerido.',
+            'max'=> 'El campo confirmar email no debe ser mayor que :max caracteres.',
+            'email' => 'El campo confirmar email   no es un correo válido.',
+            'same'  => 'Los correos no son iguales.',
+        ],
         
 
     ],

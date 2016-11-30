@@ -3,21 +3,9 @@
 <div class="container container-padding">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1	">
-		@if(session('insert_200'))
-		    <div class="alert alert-success">
-		      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-		       <i class="icon-check"></i>&nbsp;<strong>{{session('insert_200')}}</strong>
-		    </div>
-		@endif
-		@if(session('insert_500'))
-		    <div class="alert alert-danger">
-		      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-		       <i class="icon-warning"></i>&nbsp;<strong>{{session('insert_500')}}</strong>
-		    </div>
-		@endif
 		<div class="panel panel-primary	">
 			<div class="panel-heading">
-					<h3 class="panel-title "><i class="icon-users"></i> Registrar Usuario <i class="icon-arrow-left  pull-right" onclick="history.go(-1);" style="cursor:pointer;"></i>	</h3>
+					<h3 class="panel-title "><i class="icon-users"></i> {{ trans('texto.registrar_usuario') }} <i class="icon-arrow-left  pull-right" onclick="history.go(-1);" style="cursor:pointer;"></i>	</h3>
 			</div>
 			<div class="panel-body">
 			@include('showErrors')
@@ -25,48 +13,48 @@
 			{{ csrf_field() }}
 			<div class="col-md-6">
 					<div class="form-group">
-						<label for="nombre">Nombre</label>
+						<label for="nombre">{{ trans('palabras.nombre') }}</label>
 						<input type="text" class="form-control" required name="nombre" id="Nombre"
-						placeholder="Introduce tu Nombre">
+						placeholder="{{ trans('palabras.nombre') }}">
 					</div>
 				</div>
 				<div class="col-md-6"> 
 					<div class="form-group">
-						<label for="apellido">Apellido</label>
+						<label for="apellido">{{ trans('palabras.apellido') }}</label>
 						<input type="text" class="form-control" name="apellido" id="Apellido"
-						placeholder="Introduce tu Apellido">
+						placeholder="{{ trans('palabras.apellido') }}">
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="usuario">Nombre de Usuario</label>
+						<label for="usuario">{{ trans('palabras.usuario') }}</label>
 						<input type="text" class="form-control" name="user_name" id="usuario"
-						placeholder="Introduce tu Nombre de Usuario">
+						placeholder="{{ trans('palabras.usuario') }}">
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="email">Email</label>
+						<label for="email">{{ trans('palabras.email') }}</label>
 						<input type="email" class="form-control" name="email" id="email"
-						placeholder="Introduce tu Email">
+						placeholder="{{ trans('palabras.email') }}">
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="contraseña">Contraseña</label>
+						<label for="contraseña">{{ trans('palabras.password') }}</label>
 						<input type="password" class="form-control" name="password" id="password"
-						placeholder="Introduce tu Contraseña">
+						placeholder="{{ trans('palabras.password') }}">
 					</div>
 				</div>
 			    <div class="col-md-6">
 					<div class="form-group">
-						<label for="contraseña">Confirmar Contraseña</label>
+						<label for="contraseña">{{ trans('palabras.password_confirmar') }}</label>
 						<input type="password" class="form-control" name="passowrd_conf" id="passowrd_conf"
-						placeholder="Confirmar tu Contraseña">
+						placeholder="{{ trans('palabras.password_confirmar') }}">
 					</div>
 				</div>
 				<div class="col-md-12" align="right">
-					<a href="#" id="registerForm" class="btn btn-primary id with-arrow">Registrarme! <i class="icon-arrow-right"></i></a>
+					<a href="#" id="registerForm" class="btn btn-primary id with-arrow">{{ trans('palabras.registrarme') }}! <i class="icon-arrow-right"></i></a>
 				</div>
 			</form>
 			</div>

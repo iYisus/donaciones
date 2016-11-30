@@ -24,7 +24,17 @@ return [
     'nombre' => 'Nombre',
     'email' => 'Correo Electronico',
     'mensaje' => 'Mensaje',
-    'enviar' => 'Envíar'
+    'enviar' => 'Envíar',
+    'modificar_correo' => "Modificar Correo",
+    'modificar_info' => "Modificar Info.",
+    'modificar_password' => "Modificar Contraseña",
+    'password' => 'Contraseña',
+    'password_nueva' => "Contraseña Nueva",
+    'password_confirmar' => "Confirmar Contraseña",
+    'correo_actual' => "Correo Actual",
+    'correo_nuevo' => "Correo Nuevo",
+    'correo_confirmar' => "Confirmar Correo",
+    'registrarme' => "Registrarme"
 
 
 ];

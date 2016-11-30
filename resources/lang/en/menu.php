@@ -16,7 +16,7 @@ return [
     'iniciar_sesion' => 'Log in',
     'olvide_contraseña' => 'I forgot my',
     'crear_cuenta' => "Don't you have an account",
-    'registrate' => 'Sing up',
+    'registrate' => 'Sign up',
 
 ];
  

@@ -308,7 +308,7 @@
    <div class="container">
       <div class="col-md-12 text-center animate-box">
          <h3>{{ trans('informacion.titulo_donar') }}</h3>
-         <p><a href="#" class="btn btn-primary btn-outline with-arrow">{{ trans('palabras.donar') }}! <i class="icon-arrow-right"></i></a></p>
+         <p><a  data-toggle="modal" data-target="#donar-modal" class="btn btn-primary btn-outline with-arrow">{{ trans('palabras.donar') }}! <i class="icon-arrow-right"></i></a></p>
       </div>
    </div>
 </div>
