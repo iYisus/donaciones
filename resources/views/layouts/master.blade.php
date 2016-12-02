@@ -24,11 +24,13 @@
 <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
 <!-- TOASTR --> 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <!-- Theme style  -->
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <!-- IPN-VZLA CSS -->
 <link rel="stylesheet" href="{{ asset('css/ipnStyles.css') }}">
+<!-- Data tables css -->
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
 
 <!-- Modernizr JS -->
 <script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
@@ -45,7 +47,9 @@
 <!-- Flexslider -->
 <script src="{{ asset('js/jquery.flexslider-min.js') }}"></script>
 <!-- TOASTR -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<!-- DataTables JS -->
+<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 <!-- MAIN JS TEMPLATE -->
 <script src="{{ asset('js/main.js') }}"></script>
 <script src="{{ asset('js/scriptMain.js') }}"></script>
