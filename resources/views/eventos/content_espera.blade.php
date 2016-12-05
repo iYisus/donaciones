@@ -1,4 +1,3 @@
-<div class="col-md-6 divEventos">
 	<div class="row titleDivEventos shadowBox espera"> 
 		<div class="col-md-12"> En espera  </div>
 	</div>
@@ -16,4 +15,7 @@
 		</div>
 	<?php endif; ?>
 	</div>
-</div>
+<script type="text/javascript">
+	eventosJS.desarchivar()
+	eventosJS.viewEvento()
+</script>

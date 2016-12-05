@@ -37,7 +37,11 @@
 		<center>	
 			<h5> AÚN NO HAY MÉDICOS REGISTRADOS PARA ESTA ESPECIALIDAD </h5>
 			<div class="col-md-3 col-md-offset-4">
-		    	<div class="input-group-addon btn-registrar save">Registrar</div>
+		    	<div class="input-group-addon btn_registrar btn-registrar-esp" esp='<?php echo $key['ID'] ?>'>
+		    		<a href="#" style='color:white'>
+		    			Registrar
+		    		</a>
+		    	</div>
 			</div>
 		</center>
   	</div>

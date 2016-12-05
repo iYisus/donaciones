@@ -15,8 +15,11 @@
 			 	<div class="form-group">
 		    		<div class="input-group">
               <input type="hidden" name="_token" value="{{ csrf_token() }}" id='token'>
-              <div class="input-group-addon btn-registrar" data-toggle="modal" data-target="#eventoModal">
-                Registrar nuevo evento
+              <div class="input-group-addon btn-registrar modal-registrar">
+              <!-- data-toggle="modal" data-target="#eventoModal" -->
+                <a href="#" style="color:white">
+                  Registrar evento
+                </a>
               </div>
 		    		</div>
 			 	</div>
@@ -27,8 +30,12 @@
   <div class="row" style='padding-top:6%'>
   	<div class="col-md-10 col-md-offset-1">
       <div class="row">
-        @include('eventos.content_espera')
-        @include('eventos.content_archivados')
+        <div class="col-md-6 divEventos divEventosEspera">
+          @include('eventos.content_espera')
+        </div>
+        <div class="col-md-6 divEventos divEventosArchivados">
+          @include('eventos.content_archivados')
+        </div>
       </div>
   	</div>
   </div>

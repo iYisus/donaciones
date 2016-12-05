@@ -12,15 +12,19 @@ class EventosController extends Controller
     #Método que arma la vista para la gestion de especialidades
     public function index(){         
         $cls_eventos = new Eventos();
-        $data['eventos'] = Eventos::all();
-        $data['eventos'] = $cls_eventos->order_eventos_archivados($data['eventos']);
+        $data = Eventos::all();
+        $data = $cls_eventos->order_eventos_archivados($data);
+        if(count($data['archivar'])>0){
+            $update = Eventos::where('ID','=',$data['archivar'])->update(['FK_ESTATUS_EVENTO_ID'=>2]);
+        }
         return view('eventos/index',compact('data'));
     }
-    // $cls_medicos = new Medicos();
-    //     $data['medicos'] = Medicos::all();
-    //     $data['especialidades'] = Especialidades::all();
-    //     $data['medicos'] = $cls_medicos->order_data_index($data['medicos']);
-    //     return view('medicos/index',compact('data'));
+    
+    public function modal(){
+        $view = view('eventos/view');
+        $html = $view->render();
+        return $html;
+    }
 
     public function save(Request $request){
     	$cls_eventos = new Eventos();
@@ -30,7 +34,12 @@ class EventosController extends Controller
         $cls_eventos->DESCRIPCION = $request['descripcion'];
         $cls_eventos->save();
         if(isset($cls_eventos['id'])){
-            return ['estatus' => 200, 'data' => $cls_eventos['id'], 'errors' => ''];
+            $cls_eventos = new Eventos();
+            $data['eventos'] = Eventos::all();
+            $data['eventos'] = $cls_eventos->order_eventos_archivados($data['eventos']);
+            $view = view('eventos/content_espera',compact('data'));
+            $html = $view->render();
+            return ['estatus' => 200, 'data' => $html, 'errors' => ''];
         } else {
             return ['estatus' => 500, 'data' => '', 'errors' => 'Ocurrió un error'];
         }
@@ -50,7 +59,12 @@ class EventosController extends Controller
         $data['DESCRIPCION'] = $request['descripcion'];
         $update = Eventos::where('ID','=',$request['ID'])->update($data);
         if($update > 0) {
-            return ['estatus' => 200, 'data' => $update, 'errors' => ''];
+            $cls_eventos = new Eventos();
+            $data['eventos'] = Eventos::all();
+            $data['eventos'] = $cls_eventos->order_eventos_archivados($data['eventos']);
+            $view = view('eventos/content_espera',compact('data'));
+            $html = $view->render();
+            return ['estatus' => 200, 'data' => $html, 'errors' => ''];
         } else {
             return ['estatus' => 404, 'data' => '', 'errors' => 'Ocurrió un error'];
         }

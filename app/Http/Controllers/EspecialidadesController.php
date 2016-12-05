@@ -20,7 +20,10 @@ class EspecialidadesController extends Controller
         $data->ESPECIALIDAD = $request['ESPECIALIDAD'];
         $data->save();
         if(isset($data['id'])){
-            return ['estatus' => 200, 'data' => $data['id'], 'errors' => ''];
+            $data = Especialidades::all();
+            $view = view('especialidades/content',compact('data'));
+            $html = $view->render();
+            return ['estatus' => 200, 'data' => $html, 'errors' => ''];
         } else {
             return ['estatus' => 500, 'data' => '', 'errors' => 'Ocurrió un error'];
         }
@@ -31,7 +34,10 @@ class EspecialidadesController extends Controller
         $valor = isset($request['estatus']) ? $request['estatus'] : $request['name'];   
         $update = Especialidades::where('ID','=',$request['id'])->update(array($posicion=>$valor));
         if($update > 0) {
-            return ['estatus' => 200, 'data' => $update, 'errors' => ''];
+            $data = Especialidades::all();
+            $view = view('especialidades/content',compact('data'));
+            $html = $view->render();
+            return ['estatus' => 200, 'data' => $html, 'errors' => ''];
         } else {
             return ['estatus' => 404, 'data' => '', 'errors' => 'Ocurrió un error'];
         }

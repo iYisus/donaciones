@@ -11,11 +11,11 @@ eventosJS = {
 	view: '.viewEvento',
 	cancelar: '.cancelar',
 	modal: '#eventoModal',
+	divEventosEspera: '.divEventosEspera',
+	btn_modal: '.modal-registrar',
 
 	init:function(){
-		eventosJS.save()
-		eventosJS.viewEvento()
-		eventosJS.desarchivar()
+		eventosJS.openModal()
 	},
 
 	viewEvento: function(){
@@ -36,6 +36,21 @@ eventosJS = {
 				// } else {
 				// 	swal("Error!", data.erros, "error");
 				// }
+			}).fail(function(){
+				swal("Error!", "Ha ocurrido un error. Inténtelo de nuevo", "error");
+			});
+		});
+	},
+
+	openModal: function(){
+		$(eventosJS.btn_modal).click(function(){
+			$.ajax({
+				url: "modal",
+				headers: {'X-CSRF-TOKEN':$(eventosJS.token).val()},
+				type: "GET",
+			}).done(function(data){
+				$(eventosJS.modal).html(data);
+				$(eventosJS.modal).modal('show');
 			}).fail(function(){
 				swal("Error!", "Ha ocurrido un error. Inténtelo de nuevo", "error");
 			});
@@ -154,8 +169,10 @@ eventosJS = {
 						data:params
 					}).done(function(data){
 						if(data.estatus == 200){
-			    			swal("Registrado!", "Se ha actualizado el evento con éxito", "success");
-			    			location.reload();
+							$(eventosJS.modal).modal('hide');
+							eventosJS.cleanInputs()
+			    			$(eventosJS.divEventosEspera).html(data.data)
+			    			swal("Registrado!", "Se ha actualizado el evento", "success");
 						} else {
 							swal("Error!", data.erros, "error");
 						}
@@ -189,12 +206,14 @@ eventosJS = {
 						url: "save_evento",
 						headers: {'X-CSRF-TOKEN':$(eventosJS.token).val()},
 						type: "POST",
-						// dataType: "json",
+						dataType: "json",
 						data:params
 					}).done(function(data){
 						if(data.estatus == 200){
+							$(eventosJS.modal).modal('hide');
+							eventosJS.cleanInputs()
+			    			$(eventosJS.divEventosEspera).html(data.data)
 			    			swal("Registrado!", "Se ha registrado con éxito el evento", "success");
-			    			location.reload();
 						} else {
 							swal("Error!", data.erros, "error");
 						}
@@ -206,6 +225,10 @@ eventosJS = {
 			 	}
 			});
 		});
+	},
+
+	cleanInputs: function(){
+		$(eventosJS.input_save).val('');
 	},
 }
 

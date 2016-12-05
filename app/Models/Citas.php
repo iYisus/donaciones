@@ -27,4 +27,19 @@ class Citas extends Model
         }
         return $response;
     }
+
+    public function match_cita_medico($data){
+        if (count($data['citas']) > 0){
+            foreach ($data['citas'] as $key => $value) {
+                foreach ($data['medicos'] as $keymed => $valuemed) {
+                    if($value['FK_MEDICO_ID'] == $valuemed['ID']){
+                        $value['MEDICO'] = $valuemed['NOMBRE'].' '.$valuemed['APELLIDO'];
+                    }
+                }
+            }
+            return $data['citas'];
+        } else {
+            return $data['citas'];
+        }
+    }
 }

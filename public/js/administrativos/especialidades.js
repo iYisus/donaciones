@@ -6,13 +6,13 @@ especialidadesJS = {
 	input_save: '.inputSave',
 	token: '#token',
 	name: '#nmEspecialidad',
+	tbody: '#tbodyEspecialidades',
 
 	init:function(){
 		especialidadesJS.save();
-		especialidadesJS.edit();
-		especialidadesJS.estatus();
 	},
 
+	// Funcion para registrar nueva especialidad
 	save:function(){
 		$(especialidadesJS.btn_save).click(function(){
 			name = $(especialidadesJS.name).val()
@@ -38,6 +38,7 @@ especialidadesJS = {
 				function(isConfirm){
 				 	if (isConfirm) {
 				 		params = $(especialidadesJS.input_save).serializeArray();
+				 		// Envío de petición
 				 		$.ajax({
 							url: "save_especialidad",
 							headers: {'X-CSRF-TOKEN':$(especialidadesJS.token).val()},
@@ -47,7 +48,8 @@ especialidadesJS = {
 						}).done(function(data){
 							if(data.estatus == 200){
 				    			swal("Registrado!", "Se ha registrado con éxito la especialidad "+name, "success");
-				    			location.reload();
+								especialidadesJS.cleanInputEspecialidad()
+								$(especialidadesJS.tbody).html(data.data)			
 							} else {
 								swal("Error!", data.erros, "error");
 							}
@@ -62,6 +64,7 @@ especialidadesJS = {
 		});
 	},
 
+	// Funcion para actualizar especialidades
 	edit: function(){
 		$(especialidadesJS.btn_edit).click(function(){
 			params = {}
@@ -91,7 +94,8 @@ especialidadesJS = {
 				}).done(function(data){
 					if(data.estatus == 200){
 		    			swal("Especialidad actualizada!", "Se ha actualizado la especialidad a: "+inputValue, "success");
-		    			location.reload();
+		    			especialidadesJS.cleanInputEspecialidad()
+		    			$(especialidadesJS.tbody).html(data.data)			
 					} else {
 						swal("Error!", data.erros, "error");
 					}
@@ -102,6 +106,7 @@ especialidadesJS = {
 		});
 	},
 
+	// Funcion para actualizar estatus: especialidad activa/inactiva
 	estatus: function(){
 		$(especialidadesJS.btn_estatus).click(function(){
 			params = {}
@@ -129,7 +134,8 @@ especialidadesJS = {
 					}).done(function(data){
 						if(data.estatus == 200){
 			    			swal("Registrado!", "Se ha actualizado el estatus con éxito", "success");
-			    			location.reload();
+			    			especialidadesJS.cleanInputEspecialidad()
+			    			$(especialidadesJS.tbody).html(data.data)			
 						} else {
 							swal("Error!", data.erros, "error");
 						}
@@ -143,6 +149,9 @@ especialidadesJS = {
 		});
 	},
 
+	cleanInputEspecialidad: function(){
+		$(especialidadesJS.name).val('');
+	}
 }
 
 $(function(){

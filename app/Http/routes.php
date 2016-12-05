@@ -49,6 +49,7 @@ Route::post('edit_medicos','MedicosController@edit');
 */
 
 Route::get('eventos','EventosController@index');
+Route::get('modal','EventosController@modal');
 Route::post('save_evento','EventosController@save');
 Route::post('search_evento','EventosController@search');
 Route::post('edit_evento','EventosController@edit');
@@ -61,5 +62,10 @@ Route::post('estatus_evento','EventosController@edit_estatus');
 */
 
 Route::get('citas','CitasController@index');
+Route::get('view_modal_cita','CitasController@modal');
 Route::post('save_cita','CitasController@save');
 Route::post('edit_cita','CitasController@edit');
+Route::post('view_proximas_citas','CitasController@view');
+Route::post('search_medicos','CitasController@search_medico');
+Route::post('search_cita','CitasController@search_cita');
+Route::post('cancelar_cita','CitasController@cancelar');

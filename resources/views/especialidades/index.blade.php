@@ -1,4 +1,3 @@
-
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 @extends('layouts.board')
 @section('content')
@@ -17,7 +16,9 @@
 		    		<div class="input-group">
               <input type="hidden" name="_token" value="{{ csrf_token() }}" id='token'>
 			     		<input type="text" class="form-control inputSave" id="nmEspecialidad" placeholder="Nueva especialidad" name='ESPECIALIDAD'>
-			      	<div class="input-group-addon btn-registrar" id='save'>Registrar</div>
+			      	<div class="input-group-addon btn-registrar" id='save'>
+                <a href="#" style='color:white'>Registrar</a>
+              </div>
 		    		</div>
 			 	</div>
 			</form>
@@ -33,7 +34,7 @@
 					<th width='19%'></th>
 				</thead>
         <!-- Contenido de la tabla -->
-				<tbody>
+				<tbody id='tbodyEspecialidades'>
           @include('especialidades.content')
 				</tbody>
   		</table>

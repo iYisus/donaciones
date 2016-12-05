@@ -15,12 +15,17 @@ class Eventos extends Model
     						FK_ESTATUS_EVENTO_ID,ESTATUS_REGISTRO'];
 
     public function order_eventos_archivados($data){
-        $response = [];
+        $response = ['eventos'=>[],'archivar'=>[]];
+        $hoy = date('Y-m-d');
     	foreach ($data as $key => $value) {
-    		if ( array_key_exists($value['FK_ESTATUS_EVENTO_ID'], $response) ){
-    			$response[$value['FK_ESTATUS_EVENTO_ID']][$value['ID']] = $value;
+            if($hoy > $value['FECHA_FIN'] && $value['FK_ESTATUS_EVENTO_ID']==1){
+                array_push($response['archivar'], $value['ID']);
+                $value['FK_ESTATUS_EVENTO_ID'] = 2;
+            }
+    		if ( array_key_exists($value['FK_ESTATUS_EVENTO_ID'], $response['eventos']) ){
+    			$response['eventos'][$value['FK_ESTATUS_EVENTO_ID']][$value['ID']] = $value;
     		} else {
-    			$response[$value['FK_ESTATUS_EVENTO_ID']] = [$value['ID'] => $value];
+    			$response['eventos'][$value['FK_ESTATUS_EVENTO_ID']] = [$value['ID'] => $value];
     		}
     	}
         return $response;

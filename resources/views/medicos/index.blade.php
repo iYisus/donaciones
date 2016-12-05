@@ -12,7 +12,9 @@
   <div class="row">
   	<div class="col-md-2">
       <div class="input-group-addon btn-registrar" data-toggle="modal" data-target="#medicosModal">
-        Registrar
+        <a href="#" style='color:white'>
+          Registrar
+        </a>
       </div>
   	</div>
   </div>

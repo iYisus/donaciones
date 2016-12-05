@@ -20,16 +20,21 @@ class MedicosController extends Controller
     }
 
     public function save(Request $request){
-        $cls_medicos = new Medicos();
-        $cls_medicos->NOMBRE = $request['nombre'];
-        $cls_medicos->APELLIDO = $request['apellido'];
-        $cls_medicos->CEDULA = $request['cedula'];
-        $cls_medicos->FK_ESPECIALIDAD_ID = $request['especialidad'];
-        $cls_medicos->save();
-        if(isset($cls_medicos['id'])){
-            return ['estatus' => 200, 'data' => $cls_medicos['id'], 'errors' => ''];
+        $search = Medicos::where('CEDULA','=',$request['cedula'])->get();
+        if(count($search)>0){
+            return ['estatus' => 500, 'data' => '', 'errors' => 'Ya existe un médico registrado con el mismo número de cédula'];
         } else {
-            return ['estatus' => 500, 'data' => '', 'errors' => 'Ocurrió un error'];
+            $cls_medicos = new Medicos();
+            $cls_medicos->NOMBRE = $request['nombre'];
+            $cls_medicos->APELLIDO = $request['apellido'];
+            $cls_medicos->CEDULA = $request['cedula'];
+            $cls_medicos->FK_ESPECIALIDAD_ID = $request['especialidad'];
+            $cls_medicos->save();
+            if(isset($cls_medicos['id'])){
+                return ['estatus' => 200, 'data' => $cls_medicos['id'], 'errors' => ''];
+            } else {
+                return ['estatus' => 500, 'data' => '', 'errors' => 'Ocurrió un error'];
+            }
         }
     }
 
@@ -42,10 +47,14 @@ class MedicosController extends Controller
     }
 
     public function edit(Request $request){
-        $data['NOMBRE'] = $request['nombre'];
-        $data['APELLIDO'] = $request['apellido'];
-        $data['CEDULA'] = $request['cedula'];
-        $data['FK_ESPECIALIDAD_ID'] = $request['especialidad'];
+        if(isset($request['estatus'])){
+            $data['FK_ESTATUS_MEDICOS_ID'] = $request['estatus'];
+        } else {    
+            $data['NOMBRE'] = $request['nombre'];
+            $data['APELLIDO'] = $request['apellido'];
+            $data['CEDULA'] = $request['cedula'];
+            $data['FK_ESPECIALIDAD_ID'] = $request['especialidad'];
+        }
         $update = Medicos::where('ID','=',$request['id'])->update($data);
         if($update > 0) {
             return ['estatus' => 200, 'data' => $update, 'errors' => ''];

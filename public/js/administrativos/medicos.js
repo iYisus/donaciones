@@ -2,6 +2,7 @@ medicosJS = {
 
 	btn_save:'.save',
 	btn_edit: '.edit',
+	btn_registar: '.btn-registrar-esp',
 	btn_desactivar: '.desactivar',
 	btn_activar: '.activar',
 	btn_estatus : '.estatus',
@@ -9,6 +10,7 @@ medicosJS = {
 	input_save: '.inputSave',
 	token: '#token',
 	divModal: '#medicosModal',	
+	selectEspecialidad: '#especialidad',
 
 	init:function(){
 		medicosJS.save();
@@ -16,6 +18,7 @@ medicosJS = {
 		medicosJS.desactivar();
 		medicosJS.activar();
 		medicosJS.estatus();
+		medicosJS.modal_registar();
 	},
 
 	save:function(){
@@ -42,10 +45,11 @@ medicosJS = {
 						data:params
 					}).done(function(data){
 						if(data.estatus == 200){
+							medicosJS.cleanInputs()
 			    			swal("Registrado!", "Se ha registrado con éxito el médico", "success");
 			    			location.reload();
 						} else {
-							swal("Error!", data.erros, "error");
+							swal("Error!", data.errors, "error");
 						}
 					}).fail(function(){
 						swal("Error!", "Ha ocurrido un error. Inténtelo de nuevo	", "error");
@@ -66,6 +70,7 @@ medicosJS = {
 				type: "POST",	
 				data:{medico:medico}
 			}).done(function(data){
+				medicosJS.cleanInputs()
 				$(medicosJS.divModal).html(data);
 				$(medicosJS.divModal).modal('show');
 			}).fail(function(){
@@ -98,6 +103,7 @@ medicosJS = {
 						data:params
 					}).done(function(data){
 						if(data.estatus == 200){
+							medicosJS.cleanInputs()
 			    			swal("Éxito!", "Se ha actualizado el registro con Éxito", "success");
 			    			location.reload();
 						} else {
@@ -186,6 +192,7 @@ medicosJS = {
 						data:params
 					}).done(function(data){
 						if(data.estatus == 200){
+							medicosJS.cleanInputs()
 			    			swal("Registrado!", "Se ha actualizado el estatus con éxito", "success");
 			    			location.reload();
 						} else {
@@ -199,6 +206,18 @@ medicosJS = {
 			 	}
 				});
 		});
+	},
+
+	modal_registar: function(){
+		$(medicosJS.btn_registar).click(function(){
+			medicosJS.cleanInputs()
+			$(medicosJS.divModal).modal('show');
+			$(medicosJS.selectEspecialidad).val($(this).attr('esp'));
+		});
+	},
+
+	cleanInputs: function(){
+		$(medicosJS.input_save).val('');
 	},
 
 }
