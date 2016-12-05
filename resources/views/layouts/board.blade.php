@@ -30,6 +30,9 @@
         <link rel="stylesheet" href="{{ asset('css/ipnStyles.css') }}">
         <!-- Modernizr JS -->
         <script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
+        <!-- Sweett Alert -->
+        <script src="{{ asset('thirdparty/alerts/dist/sweetalert.min.js') }}"></script>
+        <link rel="stylesheet" type="text/css" href="{{ asset('thirdparty/alerts/dist/sweetalert.css')}}">
         <!-- FOR IE9 below -->
         <!--[if lt IE 9]>
         <script src="js/respond.min.js"></script>
@@ -40,6 +43,13 @@
             }
             .sangria{
                 padding-left: 15px;
+            }
+            .trDisabled{
+                border-left: solid 3px red
+            }
+            .btn-registrar{
+                background-color: #4db6ac !important;
+                color: white !important;
             }
         </style>
     </head>

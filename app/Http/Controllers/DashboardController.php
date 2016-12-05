@@ -8,10 +8,10 @@ use IPNVZLA\Http\Requests;
 
 class DashboardController extends Controller
 {
-	public function __construct(Request $request){
-		$this->middleware('admin',["only"=>["index"]]);
-		$this->middleware('super_user',["only"=>["especialidades"]]);
-	}
+	// public function __construct(Request $request){
+	// 	$this->middleware('admin',["only"=>["index"]]);
+	// 	$this->middleware('super_user',["only"=>["especialidades"]]);
+	// }
 
 	#Método que arma la vista principal del dashboard para la gestión administrativa
 	#de la página
