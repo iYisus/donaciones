@@ -1,7 +1,7 @@
 medicosJS = {
 
 	btn_save:'.save',
-	btn_edit: '.edit',
+	btn_edit: 'button.edit',
 	btn_registar: '.btn-registrar-esp',
 	btn_desactivar: '.desactivar',
 	btn_activar: '.activar',
@@ -33,6 +33,7 @@ medicosJS = {
 				confirmButtonText: "Sí, registrar",
 				cancelButtonText: "No, cancelar",
 				closeOnConfirm: false,
+				showLoaderOnConfirm: true,
 				closeOnCancel: false
 			},
 			function(isConfirm){
@@ -45,9 +46,15 @@ medicosJS = {
 						data:params
 					}).done(function(data){
 						if(data.estatus == 200){
+							$(medicosJS.divModal).modal('hide');
 							medicosJS.cleanInputs()
-			    			swal("Registrado!", "Se ha registrado con éxito el médico", "success");
-			    			location.reload();
+							swal({
+					            title: "Éxito!", 
+					            text: "Se ha registrado con éxito el médico", 
+					            type: "success"
+					        },function() {
+					            location.reload();
+					        });
 						} else {
 							swal("Error!", data.errors, "error");
 						}
@@ -90,6 +97,7 @@ medicosJS = {
 				confirmButtonColor: "#DD6B55",
 				confirmButtonText: "Sí, actualizar",
 				cancelButtonText: "No, cancelar",
+				showLoaderOnConfirm: true,
 				closeOnConfirm: false,
 				closeOnCancel: false
 			},
@@ -103,9 +111,15 @@ medicosJS = {
 						data:params
 					}).done(function(data){
 						if(data.estatus == 200){
+							$(medicosJS.divModal).modal('hide');
 							medicosJS.cleanInputs()
-			    			swal("Éxito!", "Se ha actualizado el registro con Éxito", "success");
-			    			location.reload();
+							swal({
+					            title: "Éxito!", 
+					            text: "Se ha actualizado el registro con Éxito", 
+					            type: "success"
+					        },function() {
+					            location.reload();
+					        });
 						} else {
 							swal("Error!", data.erros, "error");
 						}
@@ -131,6 +145,7 @@ medicosJS = {
 				confirmButtonText: "Sí, desactivar",
 				cancelButtonText: "No, cancelar",
 				closeOnConfirm: false,
+				showLoaderOnConfirm: true,
 				closeOnCancel: false
 			},
 			function(isConfirm){
@@ -153,6 +168,7 @@ medicosJS = {
 				confirmButtonColor: "#DD6B55",
 				confirmButtonText: "Sí, activar",
 				cancelButtonText: "No, cancelar",
+				showLoaderOnConfirm: true,
 				closeOnConfirm: false,
 				closeOnCancel: false
 			},
@@ -164,6 +180,40 @@ medicosJS = {
 			 	}
 			});
 		});
+	},
+
+	tables: function(){
+         $("#medicos-tabla").DataTable({
+ 				"scrollY": "300px",
+			    "language": {
+			      "url": "//cdn.datatables.net/plug-ins/1.10.13/i18n/Spanish.json"
+			    },
+                processing: true,
+                pagination: true,
+                serverSide: true,
+                ajax: "getMedicos",
+                columns: [
+		            {data: 'ID', name: 'medicos.ID'},
+		            {data: 'NOMBRE', name: 'medicos.NOMBRE'},
+		            {data: 'APELLIDO', name: 'medicos.APELLIDO'},
+		            {data: 'CEDULA', name: 'medicos.CEDULA'},
+		            {data: 'ESPECIALIDAD', name: 'especialidad.ESPECIALIDAD'},
+		            {
+	                     "render": function ( data, type, row ) {
+	                     	if (row["FK_ESTATUS_MEDICOS_ID"] == 1){
+	                     		estatus = "<button class='btn btn-danger estatus' medico='"+row["ID"]+"' estatus='2'><i class='icon-remove'></i></button>";
+	                     	}else{
+	                     		estatus = "<button class='btn btn-success estatus' medico='"+row["ID"]+"' estatus='1'><i class='icon-check'></i></button>";
+	                     	}
+	                     	editar = "<button class='btn btn-primary edit' medico='"+row["ID"]+"' reg=''><i class='icon-pencil'></i></button>";
+	                        return editar+estatus;
+	                    },
+	                },	
+		        ],
+		        "fnDrawCallback": function( oSettings ) {
+                    medicosJS.init();    
+                },
+            });
 	},
 
 	estatus: function(){
@@ -179,6 +229,7 @@ medicosJS = {
 				confirmButtonColor: "#DD6B55",
 				confirmButtonText: "Sí",
 				cancelButtonText: "No",
+				showLoaderOnConfirm: true,
 				closeOnConfirm: false,
 				closeOnCancel: false
 			},
@@ -192,9 +243,15 @@ medicosJS = {
 						data:params
 					}).done(function(data){
 						if(data.estatus == 200){
+							$(medicosJS.divModal).modal('hide');
 							medicosJS.cleanInputs()
-			    			swal("Registrado!", "Se ha actualizado el estatus con éxito", "success");
-			    			location.reload();
+							swal({
+					            title: "Éxito!", 
+					            text: "Se ha actualizado el estatus con éxito", 
+					            type: "success"
+					        },function() {
+					            location.reload();
+					        });
 						} else {
 							swal("Error!", data.erros, "error");
 						}
@@ -204,7 +261,7 @@ medicosJS = {
 			  	} else {
 					swal("Cancelado", "Ha cancelado el registro de las especialidad "+name, "error");
 			 	}
-				});
+			});
 		});
 	},
 
@@ -222,6 +279,3 @@ medicosJS = {
 
 }
 
-$(function(){
-	medicosJS.init()
-});

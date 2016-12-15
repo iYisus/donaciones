@@ -85,6 +85,7 @@ Route::post('edit_especialidad','EspecialidadesController@edit');
 */
 
 Route::get('medicos','MedicosController@index');
+Route::get('getMedicos','MedicosController@tablaMedicos');
 Route::post('save_medicos','MedicosController@save');
 Route::post('search_medico','MedicosController@search');
 Route::post('edit_medicos','MedicosController@edit');

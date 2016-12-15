@@ -5,6 +5,8 @@ namespace IPNVZLA\Http\Controllers;
 use Illuminate\Http\Request;
 use IPNVZLA\Http\Requests;
 use IPNVZLA\Models\Especialidades;
+use Yajra\Datatables\Datatables;
+
 
 class EspecialidadesController extends Controller
 {

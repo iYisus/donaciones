@@ -6,17 +6,16 @@ use Illuminate\Http\Request;
 use IPNVZLA\Http\Requests;
 use IPNVZLA\Models\Medicos;
 use IPNVZLA\Models\Especialidades;
+use Yajra\Datatables\Datatables;
+use DB;
 
 class MedicosController extends Controller
 {
 
     #Método que arma la vista para la gestion de especialidades
     public function index(){
-        $cls_medicos = new Medicos();
-    	$data['medicos'] = Medicos::all();
-        $data['especialidades'] = Especialidades::all();
-        $data['medicos'] = $cls_medicos->order_data_index($data['medicos']);
-    	return view('medicos/index',compact('data'));
+        $data["especialidades"] = Especialidades::all();
+        return view('medicos/index',compact('data'));
     }
 
     public function save(Request $request){
@@ -61,6 +60,15 @@ class MedicosController extends Controller
         } else {
             return ['estatus' => 404, 'data' => '', 'errors' => 'Ocurrió un error'];
         }
+    }
+
+    public function tablaMedicos(){
+        if (request()->ajax()) {
+            $data = DB::table('medicos')
+                ->join('especialidad', 'medicos.FK_ESPECIALIDAD_ID', '=', 'especialidad.ID')
+                ->select(['medicos.ID','medicos.NOMBRE','medicos.APELLIDO','medicos.CEDULA','medicos.FK_ESTATUS_MEDICOS_ID','especialidad.ESPECIALIDAD']);
+            return Datatables::of($data)->make(true);    
+        }   
     }
 
 

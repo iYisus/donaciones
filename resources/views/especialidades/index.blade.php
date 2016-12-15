@@ -1,16 +1,15 @@
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 @extends('layouts.board')
 @section('content')
-  <!-- Titulo -->
+<!-- Titulo -->
 	<div class='row'>
     <div class="col-md-12">  
-    	<p style='font-size: 20px'>Gestionar especialidades</p>
+    	<p class="title-board">Gestionar especialidades</p>
     	<hr>
     </div>
   </div>
   <!-- Input/boton para registrar -->
   <div class="row">
-  	<div class="col-md-10">
+  	<div class="col-md-10 col-sm-12 col-sx-12">
   		<form class="form-inline">
 			 	<div class="form-group">
 		    		<div class="input-group">
@@ -25,20 +24,10 @@
   	</div>
   </div>
   <!-- Tabla de contenido -->
-  <div class="row" style='padding-top:6%'>
-  	<div class="col-md-10 col-md-offset-1">
-  		<table class='table table-condensed table-striped'>
-        <!-- Titulos de la tabla -->
-				<thead>
-					<th>Nombre especialidad</th>
-					<th width='19%'></th>
-				</thead>
-        <!-- Contenido de la tabla -->
-				<tbody id='tbodyEspecialidades'>
-          @include('especialidades.content')
-				</tbody>
-  		</table>
+  <div class="row" style="padding-bottom: 50px;">
+  	<div class="col-md-10 col-md-offset-1 " id="tbodyEspecialidades" style="min-height: 400px !important;">
+  		   @include('especialidades.content')
   	</div>
   </div>
-@stop
 <script src="{{ asset('js/administrativos/especialidades.js') }}"></script>
+@stop

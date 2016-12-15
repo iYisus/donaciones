@@ -21,6 +21,7 @@ especialidadesJS = {
 					title: "Nombre de la especialidad!",
 					text: "El nombre de la especialidad es obligatorio, por favor introduzca una especialidad válida",
 					type: "error",
+					showLoaderOnConfirm: true,
 					confirmButtonText: "Cerrar"
 				});
 			} else {
@@ -32,13 +33,14 @@ especialidadesJS = {
 					confirmButtonColor: "#DD6B55",
 					confirmButtonText: "Sí, registrar",
 					cancelButtonText: "No, cancelar",
+					showLoaderOnConfirm: true,
 					closeOnConfirm: false,
 					closeOnCancel: false
 				},
 				function(isConfirm){
 				 	if (isConfirm) {
+				 		scriptMain.addLoader();
 				 		params = $(especialidadesJS.input_save).serializeArray();
-				 		// Envío de petición
 				 		$.ajax({
 							url: "save_especialidad",
 							headers: {'X-CSRF-TOKEN':$(especialidadesJS.token).val()},
@@ -49,14 +51,17 @@ especialidadesJS = {
 							if(data.estatus == 200){
 				    			swal("Registrado!", "Se ha registrado con éxito la especialidad "+name, "success");
 								especialidadesJS.cleanInputEspecialidad()
-								$(especialidadesJS.tbody).html(data.data)			
+								$(especialidadesJS.tbody).html(data.data)
 							} else {
 								swal("Error!", data.erros, "error");
 							}
 						}).fail(function(){
 							swal("Error!", "Ha ocurrido un error. Inténtelo de nuevo	", "error");
+						}).always(function(){
+							scriptMain.removeLoader();
 						});
 				  	} else {
+				  		scriptMain.removeLoader();
 						swal("Cancelado", "Ha cancelado el registro de las especialidad "+name, "error");
 				 	}
 				});
@@ -77,10 +82,16 @@ especialidadesJS = {
 				showCancelButton: true,
 				closeOnConfirm: false,
 				animation: "slide-from-top",
+				showLoaderOnConfirm: true,
 				inputPlaceholder: name
 			}, function(inputValue){
-				if (inputValue === false) return false;
+				scriptMain.addLoader();
+				if (inputValue === false){
+					 scriptMain.removeLoader();
+					return false
+				}
 				if (inputValue === "") {
+					scriptMain.removeLoader();
 					swal.showInputError("Ingrese el nombre de la especialidad");
 					return false
 				}
@@ -101,11 +112,13 @@ especialidadesJS = {
 					}
 				}).fail(function(){
 					swal("Error!", "Ha ocurrido un error. Inténtelo de nuevo	", "error");
+				}).always(function(){
+					scriptMain.removeLoader();
 				});
 			});
 		});
 	},
-
+Lilo13923847*
 	// Funcion para actualizar estatus: especialidad activa/inactiva
 	estatus: function(){
 		$(especialidadesJS.btn_estatus).click(function(){
@@ -120,11 +133,13 @@ especialidadesJS = {
 				confirmButtonColor: "#DD6B55",
 				confirmButtonText: "Sí",
 				cancelButtonText: "No",
+				showLoaderOnConfirm: true,
 				closeOnConfirm: false,
 				closeOnCancel: false
 			},
 			function(isConfirm){
 			 	if (isConfirm) {
+			 	scriptMain.addLoader();
 			 		$.ajax({
 						url: "edit_especialidad",
 						headers: {'X-CSRF-TOKEN':$(especialidadesJS.token).val()},
@@ -141,8 +156,11 @@ especialidadesJS = {
 						}
 					}).fail(function(){
 						swal("Error!", "Ha ocurrido un error. Inténtelo de nuevo	", "error");
+					}).always(function(){
+						scriptMain.removeLoader();
 					});
 			  	} else {
+			  		scriptMain.removeLoader();
 					swal("Cancelado", "Ha cancelado el registro de las especialidad "+name, "error");
 			 	}
 				});

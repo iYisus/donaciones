@@ -93,29 +93,3 @@
     </div>
   </div>
 @stop
-<script type="text/javascript">
-    /* activate sidebar */
-    $('#sidebarmenu').affix({
-      offset: {
-        top: 50
-      }
-    });
-
-    $('.white-panel').hover(function(){
-        alert('aqui');
-        $('.white-panel').css('z-index', 0);
-        $(this).css('z-index',200);
-    });
-</script>
-<style type="text/css">
-    .white-panel:hover {
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
-    margin-top: -5px;
-    transition: all 0.3s ease-in-out 0s;
-    }
-    .white-panel {
-    background: white none repeat scroll 0 0;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    padding: 10px;
-    position: absolute;
-</style>
