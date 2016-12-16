@@ -36,6 +36,26 @@
     <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
     <script src="//cdn.datatables.net/plug-ins/1.10.13/i18n/Spanish.json"></script>
+    <style>
+          .navbar-login
+          {
+              width: 305px;
+              padding: 10px;
+              padding-bottom: 0px;
+          }
+
+          .navbar-login-session
+          {
+              padding: 10px;
+              padding-bottom: 0px;
+              padding-top: 0px;
+          }
+
+          .icon-size
+          {
+              font-size: 87px;
+          }
+      </style>
     </head>
    <body>
       <div id="wrapper" data-spy="scroll" data-target="#spy" class="">
@@ -62,16 +82,67 @@
                   <span class="fa fa-anchor solo">Especialidades</span>
                   </a>
                </li>
-               <li class=""> <a href="{{URL('logout')}}" data-scroll="" class="">
-                  <span class="fa fa-anchor solo">Cerrar Sesión</span>
-                  </a>
-               </li>
-            </ul>
+               @if(Auth::user()->FK_ROL_ID == 3)
+                 <li class=""> <a href="{{URL('usuarios')}}" data-scroll="" class="">
+                    <span class="fa fa-anchor solo">Usuarios</span>
+                    </a>
+                 </li>
+               @endif
+              </ul>
          </nav>
       </div>
+
       <!-- Page content -->
-      <div id="page-content-wrapper" class="">
-         <div class="col-sm-12 col-md-12 main" style='height: 100%;overflow: auto;'>
+      <div id="page-content-wrapper" style="min-height: 900px !important;">
+      <div class="navbar navbar-default " role="navigation">
+      <div class="container"> 
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="fa-icon icon-user"></span>
+                        <strong>{{Auth::user()->nombre}}</strong>
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="navbar-login">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="text-center">
+                                            <span class="fa-icon icon-user icon-size"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <span class="text-left"><strong>{{Auth::user()->nombre." ".Auth::user()->apellido}}</strong>
+                                        </span>
+                                        <br>
+                                        <span class="text-left small">
+                                        @if(Auth::user()->FK_ROL_ID == 2)
+                                            Usuario Administrador
+                                        @else
+                                            Usuario Root
+                                        @endif
+                                        </span>
+                                        <br>
+                                        <span class="text-left">
+
+                                            <a href="{{URL('perfil')}}" class="btn btn-primary btn-block btn-sm">Mi Perfil</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider navbar-login-session-bg"></li>
+                        <li><a href="{{URL('logout')}}">Cerrar Sesión <span class="fa-icon icon-sign-out pull-right"></span></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </div>
+         <div class="col-sm-12 col-md-12 main">
           <div class="fondo-opaco" style="display:none;"></div>
             <div class="spinner-wrapp" style="display:none;">
               <div class="loader"></div>

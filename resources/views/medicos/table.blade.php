@@ -20,5 +20,4 @@
 $(function(){
 	medicosJS.tables();
 })
- 	
 </script>

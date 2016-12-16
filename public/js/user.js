@@ -49,6 +49,43 @@ user = {
          })
 
      },  */
+    users: function(){
+      $(function() {
+            $('#users-table').DataTable({
+                processing: true,
+                "scrollY": "400px",
+                "language": {
+                  "url": "//cdn.datatables.net/plug-ins/1.10.13/i18n/Spanish.json"
+                },
+                serverSide: true,
+                ajax: "usuariosData",
+
+                columns: [
+                    { data: 'id', name: 'users.id' },
+                    { data: 'nombre', name: 'users.nombre' },
+                    { data: 'apellido', name: 'users.apellido' },
+                    { data: 'user_name', name: 'users.user_name' },
+                    { data: 'DESCRIPCION', name: 'roles.DESCRIPCION'},
+                    {
+                         "render": function ( data, type, row ) {
+                            estatus = "<button title='Desactivar' class='btn btn-danger estatus' medico='"+row["ID"]+"' estatus='2'><i class='icon-remove'></i></button>";
+                            editar = "<button title='Editar' class='btn btn-primary edit' medico='"+row["ID"]+"' reg=''><i class='icon-pencil'></i></button>";
+                            return editar+estatus;
+                        },
+                    },
+                ],
+                 "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+                        if (aData.FK_ESTATUS_USUARIO_ID == 2){
+                            $(nRow).children('td').eq(0).addClass('border-red');
+                        }
+                        if (aData.FK_ESTATUS_USUARIO_ID == 1){
+                            $(nRow).children('td').eq(0).addClass('border-green');
+                        }
+                },
+            });
+        });  
+    },
+
 
     registerForm: function() {
         $("#registerForm").on("click", function(event) {

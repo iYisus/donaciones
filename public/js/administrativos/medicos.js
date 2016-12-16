@@ -184,7 +184,7 @@ medicosJS = {
 
 	tables: function(){
          $("#medicos-tabla").DataTable({
- 				"scrollY": "300px",
+ 				"scrollY": "400px",
 			    "language": {
 			      "url": "//cdn.datatables.net/plug-ins/1.10.13/i18n/Spanish.json"
 			    },
@@ -201,11 +201,11 @@ medicosJS = {
 		            {
 	                     "render": function ( data, type, row ) {
 	                     	if (row["FK_ESTATUS_MEDICOS_ID"] == 1){
-	                     		estatus = "<button class='btn btn-danger estatus' medico='"+row["ID"]+"' estatus='2'><i class='icon-remove'></i></button>";
+	                     		estatus = "<button title='Desactivar' class='btn btn-danger estatus' medico='"+row["ID"]+"' estatus='2'><i class='icon-remove'></i></button>";
 	                     	}else{
-	                     		estatus = "<button class='btn btn-success estatus' medico='"+row["ID"]+"' estatus='1'><i class='icon-check'></i></button>";
+	                     		estatus = "<button title='Activar' class='btn btn-success estatus' medico='"+row["ID"]+"' estatus='1'><i class='icon-check'></i></button>";
 	                     	}
-	                     	editar = "<button class='btn btn-primary edit' medico='"+row["ID"]+"' reg=''><i class='icon-pencil'></i></button>";
+	                     	editar = "<button title='Editar' class='btn btn-primary edit' medico='"+row["ID"]+"' reg=''><i class='icon-pencil'></i></button>";
 	                        return editar+estatus;
 	                    },
 	                },	

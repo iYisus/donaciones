@@ -118,7 +118,6 @@ especialidadesJS = {
 			});
 		});
 	},
-Lilo13923847*
 	// Funcion para actualizar estatus: especialidad activa/inactiva
 	estatus: function(){
 		$(especialidadesJS.btn_estatus).click(function(){

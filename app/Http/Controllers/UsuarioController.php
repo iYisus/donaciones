@@ -14,9 +14,11 @@ use IPNVZLA\User;
 use Illuminate\Database\QueryException;
 use IPNVZLA\Http\Requests\MailRequest;
 use IPNVZLA\Http\Requests\ModificarPerfil;
+use Yajra\Datatables\Datatables;
 use Hash;    
 use DateTime;
 use Mail;
+use DB;
 
 class UsuarioController extends Controller
 {
@@ -32,6 +34,12 @@ class UsuarioController extends Controller
           return view('usuario.perfil_usuario');
         
     }
+
+    #Funcion para cargar vista de usuarios
+    public function getUsuarios(){
+        return view('usuario.usuarios');
+    }
+
 
     #Funcion para cargar vista de recuperar contraseña
     public function password(){
@@ -187,6 +195,18 @@ class UsuarioController extends Controller
         }
         catch (Exception $e) {
             return view('usuario.perfil_usuario',['estatus'=> 500, "mensaje" => trans('texto.error')]);
+        }
+
+    }
+
+    #Funcion para obtener usuarios
+    public function obtenerUsuarios(){
+        if (request()->ajax()) {
+            $data = DB::table('users')
+                    ->join('roles', 'users.FK_ROL_ID', '=', 'roles.ID')
+                    ->select(['users.id','users.FK_ESTATUS_USUARIO_ID','users.nombre','users.apellido','users.user_name','roles.DESCRIPCION'])->
+                    where('users.id', '!=', Auth::id());
+            return Datatables::of($data)->make(true);
         }
 
     }
