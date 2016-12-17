@@ -102,7 +102,7 @@ class UsuarioController extends Controller
             return response()->json(['error' => trans('texto.error'),'estatus' => 500, "mensaje" => trans('texto.error')]);
         }
         catch (Exception $e) {
-            return view('usuario.crear_usuario',['estatus'=> 500, "mensaje" => trans('texto.error')]);
+            return response()->json(['error' => trans('texto.error'),'estatus' => 500, "mensaje" => trans('texto.error')]);
         }
 
             
@@ -210,5 +210,50 @@ class UsuarioController extends Controller
         }
 
     }
+
+    #Función para buscar usuario
+    public function buscarUsuario(Request $request){
+        try {
+            if (request()->ajax()) {
+                $data['user'] = User::find($request['id']);
+                $data['roles'] =  DB::table('roles')->get();
+                $data['estatus'] = DB::table('estatus_usuario')->get();
+                $view = view('usuario/modal',compact('data'));
+                $html = $view->render();
+                return $html;   
+            }
+        } catch (Exception $e) {
+           return response()->json(['estatus' => 500, "mensaje" => 'Ha ocurrido un error']);
+        }
+        
+    }
+
+    #Función para actualizar estatus / tipo de usuario
+    public function actualizarUsuario(Request $request){
+        try {
+            if (request()->ajax()) {
+                $data["FK_ROL_ID"] = $request["tipo_usuario"];
+                $data["FK_ESTATUS_USUARIO_ID"] = $request["estatus"];
+                $user = User::where('id','=',$request['id_user'])->update($data);
+                return response()->json(['estatus'=> $user]);
+            }
+        } catch (Exception $e) {
+            return response()->json(['estatus'=> 500]);
+        }
+    }
+
+    public function deleteUser(Request $request){
+        try {
+            if (request()->ajax()) {
+                $user = User::find($request->id);
+                $user->delete();
+                return response()->json(['estatus' => $user]);
+            }
+
+        } catch (Exception $e) {
+            return response()->json(['estatus' => 500, "mensaje" => 'Ha ocurrido un error']);
+        }
+    }
+
 
 }

@@ -42,8 +42,8 @@
                                     @else
                                         <option value="{{ $value['ID']}} ?>">
                                     @endif
-                                        {{$value['ESPECIALIDAD']}}
-                                    </option>
+                                         {{$value['ESPECIALIDAD']}}
+                                        </option>
                                 @endforeach  
                             </select>
                         </div>

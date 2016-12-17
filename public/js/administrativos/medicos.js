@@ -135,7 +135,6 @@ medicosJS = {
 
 	desactivar: function(){
 		$(medicosJS.btn_desactivar).click(function(){
-			alert('aqui');
 			swal({
 				title: "Confirmar",
 				text: "¿Está seguro que desea desactivar este médico?",

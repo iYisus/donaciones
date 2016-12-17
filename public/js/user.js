@@ -1,5 +1,13 @@
 user = {
 
+btn_edit: "button.edit",
+divModal: "div#usuariosModal",
+token : "input#token",
+actualizar : "button#actualizarUsuario",
+input_save: '.inputSave',
+btn_delete: "button.delete",
+
+
     init: function() {
         this.registerForm();
     },
@@ -68,12 +76,17 @@ user = {
                     { data: 'DESCRIPCION', name: 'roles.DESCRIPCION'},
                     {
                          "render": function ( data, type, row ) {
-                            estatus = "<button title='Desactivar' class='btn btn-danger estatus' medico='"+row["ID"]+"' estatus='2'><i class='icon-remove'></i></button>";
-                            editar = "<button title='Editar' class='btn btn-primary edit' medico='"+row["ID"]+"' reg=''><i class='icon-pencil'></i></button>";
-                            return editar+estatus;
+                            eliminar = "<button title='Eliminar' class='btn btn-danger delete' user='"+row["id"]+"' estatus='2'><i class='icon-remove'></i></button>";
+                            editar = "<button title='Editar' class='btn btn-primary edit' user='"+row["id"]+"' reg=''><i class='icon-pencil'></i></button>";
+                            return editar+eliminar;
                         },
                     },
                 ],
+                "fnDrawCallback": function( oSettings ) {
+                    user.find_user();  
+                    user.delete_user();
+                     
+                },
                  "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
                         if (aData.FK_ESTATUS_USUARIO_ID == 2){
                             $(nRow).children('td').eq(0).addClass('border-red');
@@ -84,6 +97,104 @@ user = {
                 },
             });
         });  
+    },
+
+    find_user: function(){
+        $(user.btn_edit).click(function(){
+            scriptMain.addLoader();
+            id = $(this).attr('user');
+            $.ajax({
+                url: "buscarUsuario",
+                headers: {'X-CSRF-TOKEN':$(user.token).val()},
+                type: "POST",   
+                data:{id:id}
+            }).done(function(data){
+                console.log(data);
+                $(user.divModal).html(data);
+                $(user.divModal).modal('show');
+                scriptMain.removeLoader();
+            }).fail(function(){
+                swal("Error!", "Ha ocurrido un error. Inténtelo de nuevo    ", "error");
+            }).always(function(){
+                scriptMain.removeLoader();
+            });
+        });
+    },
+
+    editar_user: function(){
+        $(user.actualizar).click(function(){
+            scriptMain.addLoader();
+            params = $(user.input_save).serializeArray();
+            $.ajax({
+                url: "actualizarUsuario",
+                headers: {'X-CSRF-TOKEN':$(user.token).val()},
+                type: "POST",   
+                data:params
+            }).done(function(data){
+                if(data.estatus == true){
+                    swal({
+                      title: "Éxito!", 
+                        text: "Se ha modificado usuario con éxito", 
+                        type: "success"
+                        },function() {
+                            location.reload();
+                     });
+                }else{
+                     swal("Error!", "Ha ocurrido un error. Inténtelo de nuevo    ", "error");
+                }
+            }).fail(function(){
+                swal("Error!", "Ha ocurrido un error. Inténtelo de nuevo    ", "error");
+            }).always(function(){
+                scriptMain.removeLoader();
+            });
+        });
+    },
+
+    delete_user: function(){
+        $(user.btn_delete).click(function(){
+            id = $(this).attr("user");
+            swal({
+                title: "Confirmar",
+                text: "¿Está seguro que desea elminar este usuario? se elminará de la BD.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Sí, eliminar",
+                cancelButtonText: "No, cancelar",
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true,
+                closeOnCancel: false
+            },
+            function(isConfirm){
+                if (isConfirm) {
+                    scriptMain.addLoader();
+                    $.ajax({
+                        url: "deleteUser",
+                        headers: {'X-CSRF-TOKEN':$(user.token).val()},
+                        type: "POST",   
+                        data:{id:id},
+                    }).done(function(data){
+                       if(data.estatus.id){
+                            swal({
+                              title: "Eliminado!", 
+                                text: "Se ha elminado el usuario con éxito", 
+                                type: "success"
+                                },function() {
+                                    location.reload();
+                             });
+                       }else{
+                         swal("Error!", "Usuario no he eliminado", "error");
+                       }
+                    }).fail(function(){
+                        swal("Error!", "Ha ocurrido un error. Inténtelo de nuevo    ", "error");
+                    }).always(function(){
+                        scriptMain.removeLoader();
+                    });
+                } else {
+                    swal("Cancelado", "Ha cancelado elmiar el usuario", "error");
+                }
+            });
+        });
     },
 
 

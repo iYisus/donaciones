@@ -45,6 +45,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('logout','UsuarioController@logout');
 	Route::get('usuarios','UsuarioController@getUsuarios');
 	Route::get('usuariosData', 'UsuarioController@obtenerUsuarios');
+	Route::post('buscarUsuario', 'UsuarioController@buscarUsuario');
+	Route::post('actualizarUsuario', 'UsuarioController@actualizarUsuario');
+	Route::post('deleteUser','UsuarioController@deleteUser');
 });
 	Route::post('login','UsuarioController@login');
 	Route::resource('usuario','UsuarioController');
