@@ -21,7 +21,9 @@
       <!-- CSS Dashboard -->
       <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
       <!-- Data tables css -->
-      <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/
+      dataTables.bootstrap.min.css">
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
       <!-- Theme style  -->
       <link rel="stylesheet" href="{{ asset('css/style.css') }}">
        <!-- jQuery -->
@@ -33,6 +35,7 @@
       <!-- ScritMain -->
       <script src="{{ asset('js/scriptMain.js') }}"></script>
       <!-- DataTables JS -->
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
     <script src="//cdn.datatables.net/plug-ins/1.10.13/i18n/Spanish.json"></script>

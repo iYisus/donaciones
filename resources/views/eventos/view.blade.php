@@ -12,16 +12,16 @@
 			</div>
 			<div class='row space'>
 				<div class="col-md-6">
-					<input type="text" name="fecha_inicio" class='form-control inputSave' placeholder="Fecha inicial del evento" value="<?php if (isset($data['evento'])) { echo $data['evento']['FECHA_INICIO']; } ?>">
+					<input type="text" name="fecha_inicio" class='form-control inputSave datepicker' placeholder="Fecha inicial del evento" value="<?php if (isset($data['evento'])) { echo $data['evento']['FECHA_INICIO']; } ?>">
 				</div>
 				<div class="col-md-6">
-					<input type="text" name="fecha_fin" class='form-control inputSave' placeholder="Fecha final del evento" value="<?php echo isset($data['evento']) ? $data['evento']['FECHA_FIN'] : '' ?>">
+					<input type="text" name="fecha_fin" class='form-control inputSave datepicker' placeholder="Fecha final del evento" value="<?php echo isset($data['evento']) ? $data['evento']['FECHA_FIN'] : '' ?>">
 				</div>
 			</div>
 			<div class='row space'>
 				<div class="col-md-12">
 					Descripción del evento:
-					<textarea name='descripcion' class='form-control inputSave'><?php echo isset($data['evento']) ? $data['evento']['NOMBRE_EVENTO'] : '' ?></textarea>
+					<textarea name='descripcion' class='form-control inputSave'><?php echo isset($data['evento']) ? $data['evento']['DESCRIPCION'] : '' ?></textarea>
 				</div>
 			</div>
       	</div>
@@ -52,3 +52,9 @@
  		padding: 1em 0 1em 0
  	}
  </style>
+ <script type="text/javascript">
+    $('.datepicker').datepicker({
+        minDate:  new Date(),
+        dateFormat: "yy-mm-dd",
+    });
+</script>

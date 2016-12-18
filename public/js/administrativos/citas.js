@@ -172,6 +172,41 @@ citasJS = {
 		});
 	},
 
+	// tables: function(){
+	// 	$("#citas-tabla").DataTable({
+	// 			"scrollY": "400px",
+	// 	    "language": {
+	// 	      "url": "//cdn.datatables.net/plug-ins/1.10.13/i18n/Spanish.json"
+	// 	    },
+	// 	    processing: true,
+	// 	    pagination: true,
+	// 	    serverSide: true,
+	// 	    ajax: "getEventos",
+	// 	    columns: [
+	// 	        {data: 'ID', name: 'medicos.ID'},
+	// 	        {data: 'NOMBRE', name: 'medicos.NOMBRE'},
+	// 	        {data: 'APELLIDO', name: 'medicos.APELLIDO'},
+	// 	        {data: 'CEDULA', name: 'medicos.CEDULA'},
+	// 	        {data: 'ESPECIALIDAD', name: 'especialidad.ESPECIALIDAD'},
+	// 	        {
+	// 	            "render": function ( data, type, row ) {
+	// 	             	if (row["FK_ESTATUS_MEDICOS_ID"] == 1){
+	// 	             		estatus = "<button title='Desactivar' class='btn btn-danger estatus' medico='"+row["ID"]+"' estatus='2'><i class='icon-remove'></i></button>";
+	// 	             	}else{
+	// 	             		estatus = "<button title='Activar' class='btn btn-success estatus' medico='"+row["ID"]+"' estatus='1'><i class='icon-check'></i></button>";
+	// 	             	}
+	// 	             	editar = "<button title='Editar' class='btn btn-primary edit' medico='"+row["ID"]+"' reg=''><i class='icon-pencil'></i></button>";
+	// 	                return editar+estatus;
+	// 	            },
+	// 	        },	
+	// 	    ],
+	// 	    "fnDrawCallback": function( oSettings ) {
+	// 	        medicosJS.init();    
+	// 	    },
+	// 	});
+	// },
+
+
 }
 
 $(function(){

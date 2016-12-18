@@ -174,7 +174,7 @@ eventosJS = {
 			    			$(eventosJS.divEventosEspera).html(data.data)
 			    			swal("Registrado!", "Se ha actualizado el evento", "success");
 						} else {
-							swal("Error!", data.erros, "error");
+							swal("Error!", data.errors, "error");
 						}
 					}).fail(function(){
 						swal("Error!", "Ha ocurrido un error. Inténtelo de nuevo", "error");

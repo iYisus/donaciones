@@ -42,4 +42,23 @@ class Citas extends Model
             return $data['citas'];
         }
     }
+
+    public function match_citas_eventos($citas,$eventos){
+        $num = 0;
+        $response = [];
+        if ( count($eventos) > 0 ){
+            if(count($eventos) <= 5){ $num = count($eventos); } else { $num = 5; }
+            for ($i=0; $i < $num; $i++) { 
+                array_push($response, $eventos[$i]);
+            }
+        }
+        if (count($response) < 5 && count($citas) > 0){
+            $miss = 5 - count($response);
+            if(count($citas) <= $miss){ $num = count($citas); } else { $num = $miss; }
+            for ($i=0; $i < $num; $i++) { 
+                array_push($response, $citas[$i]);
+            }
+        }
+        return $response;
+    }
 }

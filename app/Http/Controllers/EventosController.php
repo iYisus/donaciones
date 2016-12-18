@@ -13,11 +13,11 @@ class EventosController extends Controller
     public function index(){         
         $cls_eventos = new Eventos();
         $data = Eventos::all();
-        $data = $cls_eventos->order_eventos_archivados($data);
-        if(count($data['archivar'])>0){
-            $update = Eventos::where('ID','=',$data['archivar'])->update(['FK_ESTATUS_EVENTO_ID'=>2]);
+        $enviar = $cls_eventos->order_eventos_archivados($data);
+        if(count($enviar['archivar'])>0){
+            $update = Eventos::where('ID','=',$enviar['archivar'])->update(['FK_ESTATUS_EVENTO_ID'=>2]);
         }
-        return view('eventos/index',compact('data'));
+        return view('eventos/index',compact('enviar'));
     }
     
     public function modal(){
@@ -36,8 +36,8 @@ class EventosController extends Controller
         if(isset($cls_eventos['id'])){
             $cls_eventos = new Eventos();
             $data['eventos'] = Eventos::all();
-            $data['eventos'] = $cls_eventos->order_eventos_archivados($data['eventos']);
-            $view = view('eventos/content_espera',compact('data'));
+            $enviar = $cls_eventos->order_eventos_archivados($data['eventos']);
+            $view = view('eventos/content_espera',compact('enviar'));
             $html = $view->render();
             return ['estatus' => 200, 'data' => $html, 'errors' => ''];
         } else {
@@ -60,13 +60,13 @@ class EventosController extends Controller
         $update = Eventos::where('ID','=',$request['ID'])->update($data);
         if($update > 0) {
             $cls_eventos = new Eventos();
-            $data['eventos'] = Eventos::all();
-            $data['eventos'] = $cls_eventos->order_eventos_archivados($data['eventos']);
-            $view = view('eventos/content_espera',compact('data'));
+            $data = Eventos::all();
+            $enviar = $cls_eventos->order_eventos_archivados($data);
+            $view = view('eventos/content_espera',compact('enviar'));
             $html = $view->render();
             return ['estatus' => 200, 'data' => $html, 'errors' => ''];
         } else {
-            return ['estatus' => 404, 'data' => '', 'errors' => 'Ocurrió un error'];
+            return ['estatus' => 500, 'data' => '', 'errors' => 'Debe actualizar al menos un campo del formulario de eventos'];
         }
     }
 

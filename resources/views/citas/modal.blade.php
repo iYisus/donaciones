@@ -74,7 +74,7 @@
                     <input type="text" name="pedad" class='form-control inputSave' placeholder='Edad del paciente' value="<?php echo isset($data['cita']) ? $data['cita']['EDAD_PACIENTE'] : '' ?> ">
                 </div>
                 <div class="col-md-5">
-                    <input type="text" name="fecha" class='form-control inputSave' placeholder="Fecha de la cita" value="<?php echo isset($data['cita']) ? $data['cita']['FECHA_CITA'] : '' ?> ">
+                    <input type="text" name="fecha" class='form-control inputSave datepicker' placeholder="Fecha de la cita" value="<?php echo isset($data['cita']) ? $data['cita']['FECHA_CITA'] : '' ?> ">
                 </div>
             </div>
       	</div>
@@ -103,3 +103,9 @@
  		padding: 1em 0 1em 0
  	}
  </style>
+<script type="text/javascript">
+    $('.datepicker').datepicker({
+        minDate:  new Date(),
+        dateFormat: "yy-mm-dd",
+    });
+</script>
