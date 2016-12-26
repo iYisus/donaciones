@@ -31,6 +31,9 @@
             <i class="icon-remove"></i>
           </button>
         @endif
+        <button class='btn btn-danger eliminar' especialidad='{{  $key["ID"] }}' '>
+            <i class="icon-trash"></i>
+          </button>
       </td>
     </tr>
     @endif
@@ -42,6 +45,7 @@
 $(function(){
   especialidadesJS.edit();
   especialidadesJS.estatus();
+  especialidadesJS.delete_especialidad();
   var table = $('#especialidad').DataTable({
     "scrollY": "350px",
     "language": {

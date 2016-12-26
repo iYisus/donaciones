@@ -42,19 +42,21 @@ class CitasController extends Controller
     }
 
     public function edit(Request $request){
-        $citas = new Citas;
-        $data['NOMBRE_PACIENTE'] = $request['pnombre'];
-        $data['APELLIDO_PACIENTE'] = $request['papellido'];
-        $data['FECHA_PACIENTE'] = $citas->dateMysql($request["fechap"]);
-        $data['FECHA_CITA'] = $citas->dateMysql($request["fecha"]);
-        $data['FK_ESPECIALIDAD_ID'] = $request['especialidad'];
-        $data['FK_MEDICO_ID'] = $request['medico'];
-        $data['FK_ESTATUS_CITA_ID'] = $request['estatus_cita'];
-        $update = Citas::where('ID','=',$request['ID'])->update($data);
-        if($update > 0) {
-            return ['estatus' => 200, 'data' => $update, 'errors' => ''];
-        } else {
-            return ['estatus' => 404, 'data' => '', 'errors' => 'Ocurrió un error'];
+        if (request()->ajax()) {
+            $citas = new Citas;
+            $data['NOMBRE_PACIENTE'] = $request['pnombre'];
+            $data['APELLIDO_PACIENTE'] = $request['papellido'];
+            $data['FECHA_PACIENTE'] = $citas->dateMysql($request["fechap"]);
+            $data['FECHA_CITA'] = $citas->dateMysql($request["fecha"]);
+            $data['FK_ESPECIALIDAD_ID'] = $request['especialidad'];
+            $data['FK_MEDICO_ID'] = $request['medico'];
+            $data['FK_ESTATUS_CITA_ID'] = $request['estatus_cita'];
+            $update = Citas::where('ID','=',$request['ID'])->update($data);
+            if($update > 0) {
+                return ['estatus' => 200, 'data' => $update, 'errors' => ''];
+            } else {
+                return ['estatus' => 404, 'data' => '', 'errors' => 'Ocurrió un error'];
+            }
         }
     }
 
@@ -83,20 +85,23 @@ class CitasController extends Controller
     }
 
     public function save(Request $request){
-        $data = new Citas;
-        $data->NOMBRE_PACIENTE = $request['pnombre'];
-        $data->APELLIDO_PACIENTE = $request['papellido'];
-        $data->FECHA_PACIENTE = $data->dateMysql($request["fechap"]);
-        $data->FECHA_CITA = $data->dateMysql($request["fecha"]);
-        $data->FK_ESPECIALIDAD_ID = $request['especialidad'];
-        $data->FK_MEDICO_ID = $request['medico'];
-        $data->save();
-        if(isset($data['id'])){
-            return ['estatus' => 200, 'data' => $data['id'], 'errors' => ''];
-        } else {
-            return ['estatus' => 500, 'data' => '', 'errors' => 'Ocurrió un error'];
-        }       
+         if (request()->ajax()) {
+            $data = new Citas;
+            $data->NOMBRE_PACIENTE = $request['pnombre'];
+            $data->APELLIDO_PACIENTE = $request['papellido'];
+            $data->FECHA_PACIENTE = $data->dateMysql($request["fechap"]);
+            $data->FECHA_CITA = $data->dateMysql($request["fecha"]);
+            $data->FK_ESPECIALIDAD_ID = $request['especialidad'];
+            $data->FK_MEDICO_ID = $request['medico'];
+            $data->save();
+            if(isset($data['id'])){
+                return ['estatus' => 200, 'data' => $data['id'], 'errors' => ''];
+            } else {
+                return ['estatus' => 500, 'data' => '', 'mensaje' => 'Ocurrió un error'];
+            } 
+        } 
     }
+              
 
     public function cancelar(Request $request){
         if (request()->ajax()) {
@@ -111,8 +116,8 @@ class CitasController extends Controller
     }
 
     public function search_cita(Request $request){
-        $citas = new Citas;
         if (request()->ajax()) {
+            $citas = new Citas;
             $data['cita'] = Citas::find($request['cita']);
             $data["cita"]["FECHA_CITA"] = $citas->dateMysql($data["cita"]["FECHA_CITA"]);
             $data["cita"]["FECHA_PACIENTE"] = $citas->dateMysql($data["cita"]["FECHA_PACIENTE"]);

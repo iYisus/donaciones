@@ -24,7 +24,7 @@ class EventosController extends Controller
                 }
             return view('eventos/index',compact('enviar'));   
        } catch (Exception $e) {
-           return ['estatus' => 500, 'data' => '', 'mensaje' => 'Ocurrió un error'];
+           abort(500);
        }       
        
     }

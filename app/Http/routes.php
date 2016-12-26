@@ -73,6 +73,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('especialidades','EspecialidadesController@index');
 	Route::post('save_especialidad','EspecialidadesController@save');
 	Route::post('edit_especialidad','EspecialidadesController@edit');
+	Route::post('deleEspecialidad','EspecialidadesController@deleEspecialidad');
 });
 
 /*
@@ -86,6 +87,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('save_medicos','MedicosController@save');
 	Route::post('search_medico','MedicosController@search');
 	Route::post('edit_medicos','MedicosController@edit');
+	Route::post('deleteMedico','MedicosController@deleteMedico');
 });
 
 /*

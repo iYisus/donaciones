@@ -9,8 +9,13 @@ use IPNVZLA\Models\Eventos;
 class MainController extends Controller
 {
     public function index(){
-    	$eventos = Eventos::orderby('FECHA_INICIO', 'desc')->where('FK_ESTATUS_EVENTO_ID', '=', 1)->take(3)->get();
-    	return view('index',array("eventos"=>$eventos));
+        try {
+            $eventos = Eventos::orderby('FECHA_INICIO', 'desc')->where('FK_ESTATUS_EVENTO_ID', '=', 1)->take(3)->get();
+            return view('index',array("eventos"=>$eventos));
+        } catch (Exception $e) {
+            abort(500);
+        }
+    	
     }
 
     public function buscarEvento(Request $request){

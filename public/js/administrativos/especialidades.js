@@ -7,6 +7,7 @@ especialidadesJS = {
 	token: '#token',
 	name: '#nmEspecialidad',
 	tbody: '#tbodyEspecialidades',
+	btn_delete: '.eliminar',
 
 	init:function(){
 		especialidadesJS.save();
@@ -160,11 +161,53 @@ especialidadesJS = {
 					});
 			  	} else {
 			  		scriptMain.removeLoader();
-					swal("Cancelado", "Ha cancelado el registro de las especialidad "+name, "error");
+					swal("Cancelado", "Ha cancelado editar el estatus de las especialidad "+name, "error");
 			 	}
 				});
 		});
 	},
+	delete_especialidad: function(){
+        $(especialidadesJS.btn_delete).click(function(){
+            id = $(this).attr("especialidad");
+            swal({
+                title: "Confirmar",
+                text: "¿Está seguro que desea elminar esta especialidad? se elminará de la BD.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Sí, eliminar",
+                cancelButtonText: "No, cancelar",
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true,
+                closeOnCancel: false
+            },
+            function(isConfirm){
+                if (isConfirm) {
+                    scriptMain.addLoader();
+                    $.ajax({
+                        url: "deleEspecialidad",
+                        headers: {'X-CSRF-TOKEN':$(especialidadesJS.token).val()},
+                        type: "POST",   
+                        data:{id:id},
+                    }).done(function(data){
+                       if(data.estatus == 200){
+			    			swal("Éxito!", "Has eliminado la especialidad", "success");
+			    			especialidadesJS.cleanInputEspecialidad()
+			    			$(especialidadesJS.tbody).html(data.data)			
+						} else {
+							swal("Error!", data.errors, "error");
+						}
+                    }).fail(function(data){
+                        swal("Error!", "Ha ocurrido un error. Inténtelo de nuevo  ", "error");
+                    }).always(function(){
+                        scriptMain.removeLoader();
+                    });
+                } else {
+                    swal("Cancelado", "Ha cancelado elmiar la  especialidad", "error");
+                }
+            });
+        });
+    },
 
 	cleanInputEspecialidad: function(){
 		$(especialidadesJS.name).val('');

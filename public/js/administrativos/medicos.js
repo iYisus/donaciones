@@ -11,6 +11,7 @@ medicosJS = {
 	token: '#token',
 	divModal: '#medicosModal',	
 	selectEspecialidad: '#especialidad',
+	btn_delete: '.delete_medico',
 
 	init:function(){
 		medicosJS.save();
@@ -19,6 +20,7 @@ medicosJS = {
 		medicosJS.activar();
 		medicosJS.estatus();
 		medicosJS.modal_registar();
+		medicosJS.delete_medico();
 	},
 
 	save:function(){
@@ -205,15 +207,63 @@ medicosJS = {
 	                     		estatus = "<button title='Activar' class='btn btn-success estatus' medico='"+row["ID"]+"' estatus='1'><i class='icon-check'></i></button>";
 	                     	}
 	                     	editar = "<button title='Editar' class='btn btn-primary edit' medico='"+row["ID"]+"' reg=''><i class='icon-pencil'></i></button>";
-	                        return editar+estatus;
+	                     	eliminar = "<button title='Eliminar' class='btn btn-danger delete_medico' medico='"+row["ID"]+"' reg=''><i class='icon-trash'></i></button>";
+	                        return editar+estatus+eliminar;
 	                    },
 	                },	
 		        ],
 		        "fnDrawCallback": function( oSettings ) {
-                    medicosJS.init();    
+                    medicosJS.init();  
                 },
             });
 	},
+
+	delete_medico: function(){
+        $(medicosJS.btn_delete).click(function(){
+            id = $(this).attr("medico");
+            swal({
+                title: "Confirmar",
+                text: "¿Está seguro que desea elminar este médico? se elminará de la BD.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Sí, eliminar",
+                cancelButtonText: "No, cancelar",
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true,
+                closeOnCancel: false
+            },
+            function(isConfirm){
+                if (isConfirm) {
+                    scriptMain.addLoader();
+                    $.ajax({
+                        url: "deleteMedico",
+                        headers: {'X-CSRF-TOKEN':$(medicosJS.token).val()},
+                        type: "POST",   
+                        data:{id:id},
+                    }).done(function(data){
+                       if(data.estatus == 200){
+                            swal({
+                              title: "Eliminado!", 
+                                text: "Se ha elminado el médico con éxito", 
+                                type: "success"
+                                },function() {
+                                    location.reload();
+                             });
+                       }else{
+                         swal("Error!", data.errors, "error");
+                       }
+                    }).fail(function(){
+                        swal("Error!", "Ha ocurrido un error. Inténtelo de nuevo    ", "error");
+                    }).always(function(){
+                        scriptMain.removeLoader();
+                    });
+                } else {
+                    swal("Cancelado", "Ha cancelado elmiar el médico", "error");
+                }
+            });
+        });
+    },
 
 	estatus: function(){
 		$(medicosJS.btn_estatus).click(function(){
@@ -258,7 +308,7 @@ medicosJS = {
 						swal("Error!", "Ha ocurrido un error. Inténtelo de nuevo	", "error");
 					});
 			  	} else {
-					swal("Cancelado", "Ha cancelado el registro de las especialidad "+name, "error");
+					swal("Cancelado", "Ha cancelado actualizar el estatus del médico", "error");
 			 	}
 			});
 		});

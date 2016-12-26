@@ -162,7 +162,13 @@
                      </textarea>
                   </div>
                   <div class="form-group col-md-10" align="right">
+                  @if(Auth::check())
                      <button  class="btn btn-primary" id="enviarMail">{{ trans('palabras.enviar') }}</button>
+                  @else
+                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login-modal">
+                     {{ trans('menu.iniciar_sesion') }}
+                     </button>
+                  @endif
                   </div>
             </div>
             <div class="col-md-2 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
