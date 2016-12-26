@@ -1,37 +1,39 @@
-<thead>
-    <th>Paciente</th>
-    <th>Edad</th>
-    <th>Médico</th>
-    <th>Fecha</th>
-    <th></th>
+<table class='table table-condensed table-striped  table-bordered' id='tblCitas'>
+   <thead>
+   <th>Paciente</th>
+   <th>Fecha de nacimiento</th>
+   <th>Médico</th>
+   <th>Fecha</th>
+   <th>Acciones</th>
 </thead>
 <tbody>
-    <?php if (count($data['citas']) > 0): ?>
-        <?php foreach ($data['citas'] as $key => $value): ?>
-            <tr>
-                <td><?php echo $value['NOMBRE_PACIENTE'].' '.$value['APELLIDO_PACIENTE'] ?></td>
-                <td><?php echo $value['EDAD_PACIENTE'] ?></td>
-                <td><?php echo $value['MEDICO'] ?><td>
-                <td><?php echo $value['FECHA_CITA'] ?></td>
-                <td>
-                    <button class='btn btn-primary edit_c' cita='<?php echo $value['ID'] ?>' >
-                        <i class="icon-pencil"></i>
-                    </button>
-                    <button class='btn btn-danger cancelar' cita='<?php echo $value['ID'] ?>'>
-                        <i class="icon-remove"></i>
-                    </button>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <tr>
-            <td colspan="5">
-                <center>NO HAY CITAS EN ESTA ESPECIALIDAD</center>
-            </td>
-        </tr>
-    <?php endif; ?>
+   @if (count($data['citas']) > 0)
+       @foreach ($data['citas'] as $key => $value)
+       <tr>
+          <td>{{ $value['NOMBRE_PACIENTE'].' '.$value['APELLIDO_PACIENTE'] }}</td>
+          <td>{{ $value['FECHA_PACIENTE'] }}</td>
+          <td>{{ $value['MEDICO'] }}</td>
+          <td>{{ $value['FECHA_CITA'] }}</td>
+          <td>
+             <button class='btn btn-primary edit_c' cita="{{ $value['ID'] }}" >
+             <i class="icon-pencil"></i>
+             </button>
+             <button class='btn btn-danger cancelar' cita="{{ $value['ID'] }}">
+             <i class="icon-remove"></i>
+             </button>
+          </td>
+       </tr>
+        @endforeach
+    @endif
 </tbody>
+</table>
 <script type="text/javascript">
-    citasJS.cancelarCita()
-    citasJS.edit()
+   citasJS.cancelarCita()
+   citasJS.edit()
+   $("#tblCitas").DataTable({
+        "scrollY": "300px",
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.13/i18n/Spanish.json"
+        },
+   });
 </script>

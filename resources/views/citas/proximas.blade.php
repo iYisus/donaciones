@@ -4,29 +4,20 @@
         <div class='col-md-3'>
             <select class='form-control' id='cboEspecialidad'>
                 <option value='0'>Seleccione</option>
-                <?php foreach ($data['especialidades'] as $key => $value): ?>
-                    <option value="<?php echo $value['ID'] ?>">
-                        <?php echo $value['ESPECIALIDAD'] ?>
+                @foreach ($data['especialidades'] as $key => $value)
+                    <option value="{{ $value['ID'] }}">
+                        {{ $value['ESPECIALIDAD'] }}
                     </option>
-                <?php endforeach; ?>
+                @endforeach
             </select>
         </div>
     </div>
     <hr>
     <div class='col-md-12'>
         <br><br>
-        <?php if(isset($data['citas']['proximas'])) ?>
         <div class='row'>
-            <div class='col-md-12'>
-                <table class='table table-condensed' id='tblCitas'>
-                    <thead>
-                        <tr>
-                            <th>
-                                <center>SELECCIONE UNA ESPECIALIDAD PARA LISTAR LAS CITAS CORRESPONDIENTES</center>
-                            </th>
-                        </tr>
-                    </thead>
-                </table>
+            <div class='col-md-12' id="containerCitas">
+                <center>SELECCIONE UNA ESPECIALIDAD PARA LISTAR LAS CITAS CORRESPONDIENTES</center>
             </div>
         </div>
     </div>

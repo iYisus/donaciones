@@ -1,7 +1,7 @@
 citasJS = {
 
-	btn_viewproximas:'#cboEspecialidad',
-	tbl_citas:'#tblCitas',
+	btn_viewByEspecialidad:'#cboEspecialidad',
+	tbl_citas:'div#containerCitas',
 	token: '#token',
 	input_save: '.inputSave',
 	cbo_especialidad: '#especialidad',
@@ -12,6 +12,7 @@ citasJS = {
 	edit_cita: '#edit',
 	modal: '#citasModal',
 	btn_modal: '.view_modal',
+	btn_delete: '.eliminar_c',
 
 	init:function(){
 		citasJS.viewCitasByEspecialidad()
@@ -20,6 +21,7 @@ citasJS = {
 
 	modal_cita: function(){
 		$(citasJS.btn_modal).click(function(){
+			scriptMain.addLoader()
 			$.ajax({
 				url: "view_modal_cita",
 				headers: {'X-CSRF-TOKEN':$(citasJS.token).val()},
@@ -29,12 +31,15 @@ citasJS = {
 				$(citasJS.modal).modal('show');
 			}).fail(function(){
 				swal("Error!", "Ha ocurrido un error. Inténtelo de nuevo	", "error");
+			}).always(function(){
+				scriptMain.removeLoader()
 			});
 		});
 	},
 
 	viewCitasByEspecialidad: function(){
-		$(citasJS.btn_viewproximas).change(function(){
+		$(citasJS.btn_viewByEspecialidad).change(function(){
+			scriptMain.addLoader();
 			especialidad = $(this).val();
 			$.ajax({
 				url: "view_proximas_citas",
@@ -45,14 +50,17 @@ citasJS = {
 				$(citasJS.tbl_citas).html(data);
 			}).fail(function(){
 				swal("Error!", "Ha ocurrido un error. Inténtelo de nuevo	", "error");
+			}).always(function(){
+				scriptMain.removeLoader();
 			});
 		});
 	},
 
-	modalMedicos: function(){
+	modalCitas: function(){
 		$(citasJS.cbo_especialidad).change(function(){
 			especialidad = $(this).val()
 			if (especialidad != 0){
+				scriptMain.addLoader();
 				$.ajax({
 					url: "search_medicos",
 					headers: {'X-CSRF-TOKEN':$(citasJS.token).val()},
@@ -62,6 +70,8 @@ citasJS = {
 					$(citasJS.cbo_medico).html(data);
 				}).fail(function(){
 					swal("Error!", "Ha ocurrido un error. Inténtelo de nuevo	", "error");
+				}).always(function(){
+					scriptMain.removeLoader();
 				});
 				$(citasJS.cbo_medico).attr('readonly',false)
 				$(citasJS.btn_save).attr('disabled',false)
@@ -75,6 +85,7 @@ citasJS = {
 
 	save:function(){
 		$(citasJS.btn_save).unbind('click').click(function(){
+			scriptMain.addLoader();
 			form = $(citasJS.input_save).serializeArray();
 			$.ajax({
 				url: "save_cita",
@@ -84,19 +95,27 @@ citasJS = {
 				dataType:'json',
 			}).done(function(data){	
 				if(data.estatus == 200){
-	    			swal("Registrado!", "Se ha registrado con éxito la cita", "success");
-	    			location.reload();
+					swal({
+				            title: "Éxito!", 
+				            text: "Se ha registrado con éxito la cita", 
+				            type: "success"
+					        },function() {
+					            location.reload();
+					        });
 				} else {
 					swal("Error!", data.erros, "error");
 				}
 			}).fail(function(){
 				swal("Error!", "Ha ocurrido un error. Inténtelo de nuevo", "error");
+			}).always(function(){
+				scriptMain.removeLoader();
 			});
 		});
 	},
 
 	edit: function(){
 		$(citasJS.btn_edit).unbind('click').click(function(){
+			scriptMain.addLoader();
 			cita = $(this).attr('cita');
 			$.ajax({
 				url: "search_cita",
@@ -108,12 +127,100 @@ citasJS = {
 				$(citasJS.modal).modal('show');
 			}).fail(function(){
 				swal("Error!", "Ha ocurrido un error. Inténtelo de nuevo	", "error");
+			}).always(function(){
+				scriptMain.removeLoader();
 			});
 		});
 	},
 
+	todas: function(){
+ 			$("#citas-tabla").DataTable({
+			    "language": {
+			      "url": "//cdn.datatables.net/plug-ins/1.10.13/i18n/Spanish.json"
+			    },
+			   "order": [[ 3, "desc" ]],
+                processing: true,
+                pagination: true,
+                serverSide: true,
+                ajax: "getCitas",
+                columns: [
+                    {data: 'ID', name: 'cita_medica.ID'},
+		            {data: 'NOMBRE_PACIENTE', name: 'cita_medica.NOMBRE_PACIENTE'},
+		            {data: 'APELLIDO_PACIENTE', name: 'cita_medica.APELLIDO_PACIENTE'},
+		            {data: 'FECHA_CITA', orderable: true, render:function(data, type, row){
+		            	fecha = data.split("-");
+		            	return fecha[2]+"-"+fecha[1]+"-"+fecha[0];
+		            }},
+		            {data: 'NOMBRE_MEDICO', name: 'medicos.NOMBRE'},
+		            {data: 'APELLIDO_MEDICO', name: 'medicos.APELLIDO'},
+		            {data: 'ESPECIALIDAD', name: 'especialidad.ESPECIALIDAD'},
+		            {data: 'DESCRIPCION', name: 'estatus_cita.DESCRIPCION'},
+		            {
+	                    "render": function ( data, type, row ) {
+	                    	 
+	                     	editar = "<button title='Editar' class='btn btn-primary edit_c' cita='"+row["ID"]+"' reg=''><i class='icon-pencil'></i></button>";
+	                        eliminar = "<button title='Eliminar' class='btn btn-danger eliminar_c' cita='"+row["ID"]+"' reg=''><i class='icon-trash'></i></button>";
+	                        return editar + eliminar
+	                    },
+	                },
+		        ],
+		         "fnDrawCallback": function( oSettings ) {
+                      citasJS.edit();
+                      citasJS.eliminar();
+                },
+            });
+	},
+
+	eliminar: function(){
+        $(citasJS.btn_delete).click(function(){
+            id = $(this).attr("cita");
+            swal({
+                title: "Confirmar",
+                text: "¿Está seguro que desea elminar esta cita? se elminará de la BD.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Sí, eliminar",
+                cancelButtonText: "No, cancelar",
+                closeOnConfirm: false,
+                showLoaderOnConfirm: true,
+                closeOnCancel: false
+            },
+            function(isConfirm){
+                if (isConfirm) {
+                    scriptMain.addLoader();
+                    $.ajax({
+                        url: "deleteCita",
+                        headers: {'X-CSRF-TOKEN':$(citasJS.token).val()},
+                        type: "POST",   
+                        data:{id:id},
+                    }).done(function(data){
+                       if(data.estatus){
+                            swal({
+                              title: "Eliminado!", 
+                                text: "Se ha elminado la cita con éxito", 
+                                type: "success"
+                                },function() {
+                                    location.reload();
+                             });
+                       }else{
+                         swal("Error!", "Cita no h eliminada", "error");
+                       }
+                    }).fail(function(){
+                        swal("Error!", "Ha ocurrido un error. Inténtelo de nuevo    ", "error");
+                    }).always(function(){
+                        scriptMain.removeLoader();
+                    });
+                } else {
+                    swal("Cancelado", "Ha cancelado elmiar el usuario", "error");
+                }
+            });
+        });
+    },
+
 	actualizar_cita: function(){
 		$(citasJS.edit_cita).click(function(){
+			scriptMain.addLoader();
 			form = $(citasJS.input_save).serializeArray();
 			$.ajax({
 				url: "edit_cita",
@@ -122,13 +229,21 @@ citasJS = {
 				data:form
 			}).done(function(data){
 				if(data.estatus == 200){
-	    			swal("Actualizada!", "Se ha actualizado la cita con éxito", "success");
-	    			location.reload();
+					swal({
+			            title: "Éxito!", 
+			            text: "Se ha actualizado la cita con éxito", 
+			            type: "success"
+				        },function() {
+				            location.reload();
+				        });
+	    			
 				} else {
 					swal("Error!", data.errors, "error");
 				}
 			}).fail(function(){
 				swal("Error!", "Ha ocurrido un error. Inténtelo de nuevo	", "error");
+			}).always(function(){
+				scriptMain.removeLoader();
 			});
 		});
 	},
@@ -149,6 +264,7 @@ citasJS = {
 			},
 			function(isConfirm){
 			 	if (isConfirm) {
+			 	scriptMain.addLoader();
 			 		$.ajax({
 						url: "cancelar_cita",
 						headers: {'X-CSRF-TOKEN':$(citasJS.token).val()},
@@ -157,13 +273,20 @@ citasJS = {
 						data:{cita:cita}
 					}).done(function(data){
 						if(data.estatus == 200){
-			    			swal("Cancelada!", "Se ha cancelado la cita con éxito", "success");
-			    			location.reload();
+							swal({
+			            title: "Cancelada!", 
+			            text: "Se ha cancelado la cita con éxito", 
+			            type: "success"
+				        },function() {
+				            location.reload();
+				        });
 						} else {
 							swal("Error!", data.erros, "error");
 						}
 					}).fail(function(){
 						swal("Error!", "Ha ocurrido un error. Inténtelo de nuevo	", "error");
+					}).always(function(){
+						scriptMain.removeLoader();
 					});
 			  	} else {
 					swal("Cancelado", "Ha cancelado el registro de las especialidad "+name, "error");
@@ -172,41 +295,35 @@ citasJS = {
 		});
 	},
 
-	// tables: function(){
-	// 	$("#citas-tabla").DataTable({
-	// 			"scrollY": "400px",
-	// 	    "language": {
-	// 	      "url": "//cdn.datatables.net/plug-ins/1.10.13/i18n/Spanish.json"
-	// 	    },
-	// 	    processing: true,
-	// 	    pagination: true,
-	// 	    serverSide: true,
-	// 	    ajax: "getEventos",
-	// 	    columns: [
-	// 	        {data: 'ID', name: 'medicos.ID'},
-	// 	        {data: 'NOMBRE', name: 'medicos.NOMBRE'},
-	// 	        {data: 'APELLIDO', name: 'medicos.APELLIDO'},
-	// 	        {data: 'CEDULA', name: 'medicos.CEDULA'},
-	// 	        {data: 'ESPECIALIDAD', name: 'especialidad.ESPECIALIDAD'},
-	// 	        {
-	// 	            "render": function ( data, type, row ) {
-	// 	             	if (row["FK_ESTATUS_MEDICOS_ID"] == 1){
-	// 	             		estatus = "<button title='Desactivar' class='btn btn-danger estatus' medico='"+row["ID"]+"' estatus='2'><i class='icon-remove'></i></button>";
-	// 	             	}else{
-	// 	             		estatus = "<button title='Activar' class='btn btn-success estatus' medico='"+row["ID"]+"' estatus='1'><i class='icon-check'></i></button>";
-	// 	             	}
-	// 	             	editar = "<button title='Editar' class='btn btn-primary edit' medico='"+row["ID"]+"' reg=''><i class='icon-pencil'></i></button>";
-	// 	                return editar+estatus;
-	// 	            },
-	// 	        },	
-	// 	    ],
-	// 	    "fnDrawCallback": function( oSettings ) {
-	// 	        medicosJS.init();    
-	// 	    },
-	// 	});
-	// },
+	datepicker: function(){
+			 $.datepicker.regional['es'] = {
+	         closeText: 'Cerrar',
+	         prevText: '< Ant',
+	         nextText: 'Sig >',
+	         currentText: 'Hoy',
+	         monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+	         monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+	         dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+	         dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+	         dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+	         weekHeader: 'Sm',
+	         dateFormat: 'dd-mm-yy',
+	         firstDay: 1,
+	         isRTL: false,
+	         showMonthAfterYear: false,
+	         yearSuffix: ''
+	         };
+	         $.datepicker.setDefaults($.datepicker.regional['es']);
+	 $('.datepicker').datepicker({
+	        minDate:  new Date(),
+	    });
 
-
+	    $( "#fechap" ).datepicker({
+	        yearRange: '1950:c',
+	        maxDate:  new Date(),
+	        changeYear: true
+	    });
+	},
 }
 
 $(function(){

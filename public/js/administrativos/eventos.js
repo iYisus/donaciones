@@ -66,9 +66,9 @@ eventosJS = {
 				pregunta = "¿Está seguro que desea archivar este evento?";
 				mensaje = "Se ha archivado el evento con éxito"
 			} else {
-				titulo = "Cancelado!"
-				pregunta = "¿Está seguro que desea cancelar este evento?";
-				mensaje = "Se ha cancelado el evento con éxito"
+				titulo = "Eliminado!"
+				pregunta = "¿Está seguro que desea eliminar este evento?";
+				mensaje = "Se ha eliminado el evento con éxito"
 			}
 			swal({
 				title: "Confirmar",
@@ -91,8 +91,14 @@ eventosJS = {
 						data:{evento:evento,estatus:estatus}
 					}).done(function(data){
 						if(data.estatus == 200){
-			    			swal(titulo, mensaje, "success");
-			    			location.reload();
+							swal({
+					            title: titulo, 
+					            text: mensaje, 
+					            type: "success"
+						        },function() {
+						            location.reload();
+					        });
+			    			
 						} else {
 							swal("Error!", data.erros, "error");
 						}
@@ -130,8 +136,13 @@ eventosJS = {
 						data:{evento:evento,estatus:1}
 					}).done(function(data){
 						if(data.estatus == 200){
-			    			swal('Activo', "El evento ha sido activado", "success");
-			    			location.reload();
+								swal({
+						            title: "Activo", 
+						            text: "El evento ha sido activado", 
+						            type: "success"
+							        },function() {
+							            location.reload();
+						        });
 						} else {
 							swal("Error!", data.erros, "error");
 						}
@@ -148,6 +159,13 @@ eventosJS = {
 	editarEvento: function(){
 		$(eventosJS.btn_edit).click(function(){
 			params = $(eventosJS.input_save).serializeArray();
+			params[3]["value"] = CKEDITOR.instances['descripcion'].getData();
+			for (x in params){
+				if(!params[x]["value"]){
+					swal("Error!","No puede haber campos vacíos", "error");
+					return false;
+				}
+			}
 			swal({
 				title: "Confirmar",
 				text: "¿Está seguro que desea guardar los cambios?",
@@ -189,6 +207,13 @@ eventosJS = {
 	save: function(){
 		$(eventosJS.btn_save).click(function(){
 			params = $(eventosJS.input_save).serializeArray();
+			params[3]["value"] = CKEDITOR.instances['descripcion'].getData();
+			for (x in params){
+				if(!params[x]["value"]){
+					swal("Error!","No puede haber campos vacíos", "error");
+					return false;
+				}
+			}
 			swal({
 				title: "Confirmar",
 				text: "¿Está seguro que desea registrar el evento?",

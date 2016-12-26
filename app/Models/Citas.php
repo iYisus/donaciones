@@ -22,7 +22,7 @@ class Citas extends Model
             if ( array_key_exists($value[$llave]['FK_ESPECIALIDAD_ID'], $response) ){
                 $response[$llave][$value['FK_ESPECIALIDAD_ID']][$value['ID']] = $value;
             } else {
-                $response[$llave][$value['FK_ESPECIALIDAD_ID']] = [$value['ID'] => $value];
+                $response[$llave][$key][$value['FK_ESPECIALIDAD_ID']] = [$value['ID'] => $value];
             }
         }
         return $response;
@@ -31,6 +31,8 @@ class Citas extends Model
     public function match_cita_medico($data){
         if (count($data['citas']) > 0){
             foreach ($data['citas'] as $key => $value) {
+                 $value["FECHA_CITA"] = $this->dateMysql($value["FECHA_CITA"]);
+                 $value["FECHA_PACIENTE"] = $this->dateMysql($value["FECHA_PACIENTE"]);
                 foreach ($data['medicos'] as $keymed => $valuemed) {
                     if($value['FK_MEDICO_ID'] == $valuemed['ID']){
                         $value['MEDICO'] = $valuemed['NOMBRE'].' '.$valuemed['APELLIDO'];
@@ -61,4 +63,11 @@ class Citas extends Model
         }
         return $response;
     }
+
+    public function dateMysql($fecha){
+        $fechap =  explode("-", $fecha);
+        $nueva_fecha = $fechap[2]."-".$fechap[1]."-".$fechap[0];
+        return $nueva_fecha;
+    }
+
 }

@@ -82,6 +82,9 @@
     </div>
   </div>
 </div> 
+<input type="hidden" name="_token" value="{{ csrf_token() }}" id='token'>
+<div class="modal fade" id="modalEventos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+</div> 
 <script type="text/javascript">
 $(function(){
     user.login();

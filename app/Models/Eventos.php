@@ -27,7 +27,15 @@ class Eventos extends Model
     		} else {
     			$response['eventos'][$value['FK_ESTATUS_EVENTO_ID']] = [$value['ID'] => $value];
     		}
+            $value["FECHA_INICIO"] = $this->dateMysql($value["FECHA_INICIO"]);
+            $value["FECHA_FIN"] = $this->dateMysql($value["FECHA_FIN"]);           
     	}
         return $response;
+    }
+
+    public function dateMysql($fecha){
+        $fechap =  explode("-", $fecha);
+        $nueva_fecha = $fechap[2]."-".$fechap[1]."-".$fechap[0];
+        return $nueva_fecha;
     }
 }

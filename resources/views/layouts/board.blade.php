@@ -21,9 +21,8 @@
       <!-- CSS Dashboard -->
       <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
       <!-- Data tables css -->
-      <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/
-      dataTables.bootstrap.min.css">
-      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <link rel="stylesheet" href="{{asset('js/datepicker/jquery-ui.min.css') }}">
+      <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
       <!-- Theme style  -->
       <link rel="stylesheet" href="{{ asset('css/style.css') }}">
        <!-- jQuery -->
@@ -35,7 +34,7 @@
       <!-- ScritMain -->
       <script src="{{ asset('js/scriptMain.js') }}"></script>
       <!-- DataTables JS -->
-      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+     <script src="{{asset('js/datepicker/jquery-ui.min.js') }}"></script>
     <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
     <script src="//cdn.datatables.net/plug-ins/1.10.13/i18n/Spanish.json"></script>
@@ -66,7 +65,7 @@
       <div id="sidebar-wrapper" class="">
          <nav id="spy">
             <ul class="sidebar-nav nav">
-               <li class="sidebar-brand active"> <a href="{{URL('/')}}" class="">
+               <li class="sidebar-brand active"> <a href="{{URL('admin')}}" class="">
                <span class="fa fa-anchor solo">Inicio</span></a>
                </li>
                <li class=""> <a href="{{URL('citas')}}" data-scroll="" class="">
@@ -85,12 +84,10 @@
                   <span class="fa fa-anchor solo">Especialidades</span>
                   </a>
                </li>
-               @if(Auth::user()->FK_ROL_ID == 3)
                  <li class=""> <a href="{{URL('usuarios')}}" data-scroll="" class="">
                     <span class="fa fa-anchor solo">Usuarios</span>
                     </a>
                  </li>
-               @endif
               </ul>
          </nav>
       </div>
@@ -137,6 +134,8 @@
                             </div>
                         </li>
                         <li class="divider navbar-login-session-bg"></li>
+                        <li><a href="{{URL('/')}}">Inicio <span class="fa-icon icon-home pull-right"></span></a>
+                        </li>
                         <li><a href="{{URL('logout')}}">Cerrar Sesión <span class="fa-icon icon-sign-out pull-right"></span></a>
                         </li>
                     </ul>
@@ -150,6 +149,7 @@
             <div class="spinner-wrapp" style="display:none;">
               <div class="loader"></div>
             </div>
+            @include('showErrors')
             @yield('content')
          </div>
       </div>

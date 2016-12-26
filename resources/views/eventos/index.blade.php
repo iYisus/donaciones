@@ -1,6 +1,7 @@
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 @extends('layouts.board')
 @section('content')
+<script src="{{ asset('js/administrativos/eventos.js') }}"></script>
+<script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
   <!-- Titulo -->
 	<div class='row'>
     <div class="col-md-12">  
@@ -43,8 +44,6 @@
 <div class="modal fade" id="eventoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   @include('eventos.view')
 </div>
-@stop
-<script src="{{ asset('js/administrativos/eventos.js') }}"></script>
 <style type="text/css">
   .divEventos{
     border: 1px solid #ccc;
@@ -67,3 +66,4 @@
     background-color: #A2DED0;
   }
 </style>  
+@stop

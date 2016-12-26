@@ -11,6 +11,10 @@ use Yajra\Datatables\Datatables;
 class EspecialidadesController extends Controller
 {
 
+    public function __construct(Request $request){
+        $this->middleware('admin');
+    }
+    
     #Método que arma la vista para la gestion de especialidades
     public function index(){
     	$data = Especialidades::all();

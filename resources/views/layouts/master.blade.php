@@ -91,13 +91,13 @@
                         @if(Auth::check()) 
                         <div class="btn-group">
                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                           {{Auth::user()->nombre}}
+                           {{Auth::user()->nombre." ".Auth::user()->apellido}}
                            <span class="caret"></span>
                            </button>
                            <ul id="sub-dropdown" class="dropdown-menu">
                               <li><a href="{{URL('perfil')}}" class="remove-background">{{ trans('menu.perfil') }}</a></li>
-                              @unless (Auth::user()->FK_ROL_ID == 2)
-                                <li><a href="#" class="remove-background">{{ trans('menu.panel') }}</a></li>
+                              @unless (Auth::user()->FK_ROL_ID == 1)
+                                <li><a href="{{URL('admin')}}" class="remove-background">{{ trans('menu.panel') }}</a></li>
                               @endunless
                               <li role="separator" class="divider"></li>
                               <li><a href="{{URL('logout')}}" class="remove-background">{{    trans('menu.cerrar_sesion') }}</a></li>

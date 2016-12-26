@@ -1,4 +1,4 @@
-<div class="modal-dialog" role="document">
+<div class="modal-dialog" role="document" style="width: 750px;">
     <div class="modal-content">
       <div class="modal-header">
         	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -21,7 +21,7 @@
 			<div class='row space'>
 				<div class="col-md-12">
 					Descripción del evento:
-					<textarea name='descripcion' class='form-control inputSave'><?php echo isset($data['evento']) ? $data['evento']['DESCRIPCION'] : '' ?></textarea>
+					<textarea name='descripcion' id="descripcion" class='form-control inputSave'><?php echo isset($data['evento']) ? $data['evento']['DESCRIPCION'] : '' ?></textarea>
 				</div>
 			</div>
       	</div>
@@ -32,7 +32,7 @@
         		<button type="button" class="btn btn-primary" id='edit'>Actualizar</button>
         		<?php if($data['evento']['FK_ESTATUS_EVENTO_ID'] == 1): ?>
         			<button type="button" class="btn btn-success cambiarEstatus" evento=<?php echo $data['evento']['ID'] ?> estatus='2'>Archivar</button>
-        			<button type="button" class="btn btn-danger cambiarEstatus" evento=<?php echo $data['evento']['ID'] ?> estatus='3'>Cancelar</button>
+        			<button type="button" class="btn btn-danger cambiarEstatus" evento=<?php echo $data['evento']['ID'] ?> estatus='true'>Eliminar</button>
         		<?php endif; ?>
         		<script type="text/javascript">
         			eventosJS.editarEvento();
@@ -53,8 +53,11 @@
  	}
  </style>
  <script type="text/javascript">
-    $('.datepicker').datepicker({
+    $(function(){
+      $('.datepicker').datepicker({
         minDate:  new Date(),
         dateFormat: "yy-mm-dd",
-    });
+        });
+      CKEDITOR.replace("descripcion"); 
+    })
 </script>

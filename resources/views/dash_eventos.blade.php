@@ -8,7 +8,7 @@
             style='height: 201px;left: 292.5px;top: 0;width: 247.5px;'>
         <hr>
         <p><b><?php echo $value['FECHA_INICIO'] ?></b></p>
-        <p>
+        <p  class="truncate">
             <?php echo $value['DESCRIPCION'] ?>
         </p>
     </article>

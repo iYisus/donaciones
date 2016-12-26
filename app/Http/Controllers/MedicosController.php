@@ -12,6 +12,9 @@ use DB;
 class MedicosController extends Controller
 {
 
+    public function __construct(Request $request){
+        $this->middleware('admin');
+    }
     #Método que arma la vista para la gestion de especialidades
     public function index(){
         $data["especialidades"] = Especialidades::all();

@@ -25,7 +25,7 @@ class Root
             if ($role == 3){
                 return $next($request);
             }
-            if ($role == 2){
+            if ($role == 1){
                 return redirect('/');
             }
         return redirect('/admin')->with('estatus',500)->with( "mensaje", 'No autorizado.!');

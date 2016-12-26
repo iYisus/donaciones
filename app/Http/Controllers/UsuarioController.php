@@ -23,6 +23,9 @@ use DB;
 class UsuarioController extends Controller
 {
         
+    public function __construct(Request $request){
+        $this->middleware('super_user',["only"=>["deleteUser","actualizarUsuario","buscarUsuario","obtenerUsuarios","getUsuarios"]]);
+    }
     #Funcion para cargar vista de registro de usuario
     public function create(){
           return view('usuario.crear_usuario');

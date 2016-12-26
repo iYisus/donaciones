@@ -21,6 +21,7 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 Route::get('/','MainController@index');
+Route::post('buscarEvento','MainController@buscarEvento');
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ Route::get('/','MainController@index');
 |--------------------------------------------------------------------------
 */
 Route::group(['middleware' => ['auth']], function () {
-Route::get('admin','DashboardController@index');
+  Route::get('admin','DashboardController@index');
 });
 
 
@@ -62,13 +63,6 @@ Route::group(['middleware' => ['auth']], function () {
 */
 Route::post('sendMail','MailController@sendMail');
 
-/*
-|--------------------------------------------------------------------------
-| Rutas administrativas
-|--------------------------------------------------------------------------
-*/
-
-Route::get('admin','DashboardController@index');
 
 /*
 |--------------------------------------------------------------------------
@@ -122,4 +116,6 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::post('search_medicos','CitasController@search_medico');
 	Route::post('search_cita','CitasController@search_cita');
 	Route::post('cancelar_cita','CitasController@cancelar');
+	Route::get('getCitas','CitasController@getCitas');
+	Route::post('deleteCita','CitasController@deleteCita');
 });

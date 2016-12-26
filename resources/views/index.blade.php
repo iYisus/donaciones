@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+<script src="{{ asset('js/eventos.js') }}"></script>
 <div id="fh5co-services-section">
    <div class="container" id="acerca">
       <div class="row">
@@ -91,135 +92,36 @@
          </div>
       </div>
       <div class="row">
-         <div class="col-md-4 animate-box">
-            <a href="#" class="item-grid text-center">
-               <div class="image" style="background-image: url(images/image_1.jpg)"></div>
+      @if (count($eventos) >= 1)
+         @foreach($eventos as $value)
+            <div class="col-md-4 col-sm-6 col-xs-12 animate-box" style="cursor: pointer;">
+               <a  class="item-grid text-center" id="eventoCard" evento="{{$value['ID']}}">
+                  <div class="image"  style="background-image: url(images/image_1.jpg);height:4px !important"></div>
+                  <div class="v-align">
+                     <div class="v-align-middle">
+                        <h3 class="title">{{$value["NOMBRE_EVENTO"]}}</h3>
+                        <h4 class="category">{{$value["FECHA_INICIO"]}}</h4>
+                        <h4 class="category">{!! substr($value["DESCRIPCION"],0, 20)."..." !!}</h4>
+                     </div>
+                  </div>
+               </a>
+            </div>
+            @endforeach
+         @else
+         <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 animate-box">
+            <a  class="item-grid text-center">
+               <div class="image"  style="background-image: url(images/image_1.jpg);height:4px !important"></div>
                <div class="v-align">
                   <div class="v-align-middle">
-                     <h3 class="title">Nombre de evento</h3>
-                     <h5 class="category">Descripción de los eventos</h5>
+                     <h2 class="title">No hay eventos por ahora <i class="fa-icon icon-sad"></i></h2>
                   </div>
                </div>
             </a>
          </div>
-         <div class="col-md-4 animate-box">
-            <a href="#" class="item-grid text-center">
-               <div class="image" style="background-image: url(images/image_2.jpg)"></div>
-               <div class="v-align">
-                  <div class="v-align-middle">
-                     <h3 class="title">Nombre de evento</h3>
-                     <h5 class="category">Descripción de los eventos</h5>
-                  </div>
-               </div>
-            </a>
-         </div>
-         <div class="col-md-4 animate-box">
-            <a href="#" class="item-grid text-center">
-               <div class="image" style="background-image: url(images/image_3.jpg)"></div>
-               <div class="v-align">
-                  <div class="v-align-middle">
-                     <h3 class="title">Nombre de evento</h3>
-                     <h5 class="category">Descripción de los eventos</h5>
-                  </div>
-               </div>
-            </a>
-         </div>
-         <div class="col-md-12 text-center animate-box">
-            <p><a href="#" class="btn btn-primary with-arrow">{{ trans('palabras.ver_eventos') }} <i class="icon-arrow-right"></i></a></p>
-         </div>
+         @endif
       </div>
    </div>
 </div>
-<!-- <div id="fh5co-testimony-section">
-   <div class="container">
-      <div class="row">
-         <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box padding-top">
-            <h2>Últimos Comentarios</h2>
-            <p>Instituto de Previsión del Niño</p>
-         </div>
-      </div>
-      <div class="row">
-         <div class="col-md-12 col-offset-0 to-animate">
-            <div class="wrap-testimony animate-box">
-               <div class="owl-carousel-fullwidth">
-                  <div class="item">
-                     <div class="testimony-slide active text-center">
-                        <figure>
-                           <img src="images/person1.jpg" alt="user">
-                        </figure>
-                        <blockquote>
-                           <p>"Descripción de los comentarios"</p>
-                        </blockquote>
-                        <span>Autor del comentario</span>
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="testimony-slide active text-center">
-                        <figure>
-                           <img src="images/person1.jpg" alt="user">
-                        </figure>
-                        <blockquote>
-                           <p>"Descripción de los comentarios"</p>
-                        </blockquote>
-                        <span>Autor del comentario</span>
-                     </div>
-                  </div>
-                  <div class="item">
-                     <div class="testimony-slide active text-center">
-                        <figure>
-                           <img src="images/person1.jpg" alt="user">
-                        </figure>
-                        <blockquote>
-                           <p>"Descripción de los comentarios"</p>
-                        </blockquote>
-                        <span>Autor del comentario</span>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   </div> -->
-<!--<div id="fh5co-blog-section" class="fh5co-light-grey-section">
-   <div class="container">
-      <div class="row">
-         <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box padding-top">
-            <h2>Recent from Blog</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-         </div>
-      </div>
-      <div class="row">
-         <div class="col-md-6 col-sm-6 animate-box">
-            <a href="#" class="item-grid">
-               <div class="image" style="background-image: url(images/image_1.jpg)"></div>
-               <div class="v-align">
-                  <div class="v-align-middle">
-                     <h3 class="title">We Create Mobile App</h3>
-                     <h5 class="date"><span>June 23, 2016</span> | <span>4 Comments</span></h5>
-                     <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.</p>
-                  </div>
-               </div>
-            </a>
-         </div>
-         <div class="col-md-6 col-sm-6 animate-box">
-            <a href="#" class="item-grid">
-               <div class="image" style="background-image: url(images/image_2.jpg)"></div>
-               <div class="v-align">
-                  <div class="v-align-middle">
-                     <h3 class="title">Geographical App</h3>
-                     <h5 class="date"><span>June 22, 2016</span> | <span>10 Comments</span></h5>
-                     <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.</p>
-                  </div>
-               </div>
-            </a>
-         </div>
-         <div class="col-md-12 text-center animate-box">
-            <p><a href="#" class="btn btn-primary with-arrow">View More Post <i class="icon-arrow-right"></i></a></p>
-         </div>
-      </div>
-   </div>
-   </div>-->
 <div id="fh5co-pricing-section">
    <div class="container" id="servicios">
       <div class="row">
@@ -312,4 +214,9 @@
       </div>
    </div>
 </div>
+<script type="text/javascript">
+   $(function(){
+      eventos.buscarEvento();
+   })
+</script>
 @endsection

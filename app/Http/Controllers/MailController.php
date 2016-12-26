@@ -10,6 +10,7 @@ use IPNVZLA\Http\Requests\MailRequest;
 
 class MailController extends Controller
 {
+	
     #Funcion para enviar correo
 	public function sendMail(MailRequest $request){
 		$mail = Mail::send('email.contact', $request->all(), function($msj)  use ($request){

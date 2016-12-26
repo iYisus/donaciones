@@ -20,10 +20,10 @@ class Admin
     public function handle($request, Closure $next)
     {
         $role = $this->auth->user()->FK_ROL_ID;
-            if ($role == 1 or $role == 3){
+            if ($role == 2 or $role == 3){
                 return $next($request);
             }
-            if ($role == 2){
+            if ($role == 1){
                 return redirect('/');
             }
         return redirect('/admin')->with('estatus',500)->with( "mensaje", 'No autorizado.!');
