@@ -1,0 +1,195 @@
+p{
+         margin-bottom: 10px;
+         }
+         .sangria{
+         padding-left: 15px;
+         }
+         .trDisabled{
+         border-left: solid 3px red
+         }
+         .btn-registrar{
+         background-color: #4db6ac !important;
+         color: white !important;
+         }
+         #wrapper {
+         padding-left: 250px;
+         transition: all 0.4s ease 0s;
+         }
+         #sidebar-wrapper {
+         margin-left: -250px;
+         left: 250px;
+         width: 250px;
+         background: #000;
+         position: fixed;
+         height: 100%;
+         overflow-y: auto;
+         z-index: 1000;
+         transition: all 0.4s ease 0s;
+         }
+         #wrapper.active {
+         padding-left: 0;
+         }
+         #wrapper.active #sidebar-wrapper {
+         left: 0;
+         }
+         #page-content-wrapper {
+         width: 100%;
+         }
+         .sidebar-nav {
+         position: absolute;
+         top: 0;
+         width: 250px;
+         list-style: none;
+         margin: 0;
+         padding: 0;
+         }
+         .sidebar-nav li {
+         line-height: 40px;
+         text-indent: 20px;
+         }
+         .sidebar-nav li a {
+         color: #999999;
+         display: block;
+         text-decoration: none;
+         padding-left: 60px;
+         }
+         .sidebar-nav li a span:before {
+         position: absolute;
+         left: 0;
+         color: #41484c;
+         text-align: center;
+         width: 20px;
+         line-height: 18px;
+         }
+         .sidebar-nav li a:hover,
+         .sidebar-nav li.active {
+         color: #fff;
+         background: rgba(255,255,255,0.2);
+         text-decoration: none;
+         }
+         .sidebar-nav li a:active,
+         .sidebar-nav li a:focus {
+         text-decoration: none;
+         }
+         .sidebar-nav > .sidebar-brand {
+         height: 65px;
+         line-height: 60px;
+         font-size: 18px;
+         }
+         .sidebar-nav > .sidebar-brand a {
+         color: #999999;
+         }
+         .sidebar-nav > .sidebar-brand a:hover {
+         color: #fff;
+         background: none;
+         }
+         .content-header {
+         height: 65px;
+         line-height: 65px;
+         }
+         .content-header h1 {
+         margin: 0;
+         margin-left: 20px;
+         line-height: 65px;
+         display: inline-block;
+         }
+         #menu-toggle {
+         text-decoration: none;
+         }
+         .btn-menu {
+         color: #000;
+         } 
+         .inset {
+         padding: 20px;
+         }
+         @media (max-width:767px) {
+         #wrapper {
+         padding-left: 0;
+         }
+         #sidebar-wrapper {
+         left: 0;
+         }
+         #wrapper.active {
+         position: relative;
+         left: 250px;
+         }
+         #wrapper.active #sidebar-wrapper {
+         left: 250px;
+         width: 250px;
+         transition: all 0.4s ease 0s;
+         }
+         #menu-toggle {
+         display: inline-block;
+         }
+         .inset {
+         padding: 15px;
+         }
+         }
+
+      .title-board{
+         padding-top: 20px;font-size: 26px
+      }
+
+   .dataTables_length select{
+      width: 92px !important;
+      height: initial;
+   }
+   .border-green{
+      border-left: 4px solid rgba(52, 134, 52, 0.68) !important;
+   }
+   .border-red{
+      border-left: 4px solid rgba(255, 0, 0, 0.75) !important;
+   }
+
+   .spinner-wrapp{
+   position: fixed;
+    top: 40%;
+    left: 50%;
+    z-index: 9999999 !important;
+}
+
+.fondo-opaco {
+    position: fixed;
+    display: none;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: #292929;
+    z-index: 9999998!important;
+    will-change: opacity;
+    opacity: 0.4;
+}
+
+.loader {
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 5px solid #3498db;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.truncate {
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (max-width:768px) {
+    .white-panel{
+     padding: 0px !important;
+     position:  initial;
+    }
+}
